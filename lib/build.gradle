@@ -3,6 +3,14 @@ plugins {
 	id 'java-library'
 }
 
+
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(8)
+	}
+}
+
 tasks.named('jar') {
         manifest {
                 attributes('Implementation-Title': project.name,
