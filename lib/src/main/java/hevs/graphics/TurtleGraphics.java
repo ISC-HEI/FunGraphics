@@ -8,10 +8,10 @@ import java.awt.event.MouseMotionListener;
 /**
  * Graphics class that emulates the tortoise in the Logo programming language
  * The turtle starts looking up with a black color, pen up
- * 
+ *
  * Basic port implementation by Pierre Roduit, rewritten for use with {@link FunGraphics}
  * by Pierre-André Mudry.
- * 
+ *
  * @see <a href="http://en.wikipedia.org/wiki/Turtle_graphics">Wikipedia
  *      description of Turtle Graphics</a>
  * @author <a href='mailto:pandre.mudry&#64;hevs.ch'> Pierre-Andre Mudry</a>
@@ -19,8 +19,8 @@ import java.awt.event.MouseMotionListener;
  */
 public class TurtleGraphics extends FunGraphics {
 
-	private int x = fWidth / 2;
-	private int y = fHeight / 2;
+	private double x = fWidth / 2;
+	private double y = fHeight / 2;
 	private boolean penDown = false;
 	private double angle = -Math.PI / 2.0; // Current rotation
 	private Color color = Color.black;
@@ -34,6 +34,10 @@ public class TurtleGraphics extends FunGraphics {
 		this(width, height, null);
 	}
 
+	private int round(double a) {
+		return (int)Math.round(a);
+	}
+
 	/**
 	 * Start the writing
 	 */
@@ -42,13 +46,13 @@ public class TurtleGraphics extends FunGraphics {
 		// Write the pixel corresponding to the position
 		Color oldColor = g2d.getColor();
 		setColor(color);
-		setPixel(x, y);
+		setPixel(round(x), round(y));
 		setColor(oldColor);
 	}
 
 	/**
 	 * Change the color of drawing
-	 * 
+	 *
 	 * @param color
 	 */
 	public void changeColor(Color color) {
@@ -64,20 +68,20 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Go forward the specified distance (writing if the pen is down)
-	 * 
+	 *
 	 * @param distance
 	 *            The distance to move
 	 */
 	public void forward(double distance) {
 		// Compute new position
-		int newX = x + (int) Math.round(Math.cos(angle) * distance);
-		int newY = y + (int) Math.round(Math.sin(angle) * distance);
+		double newX = x + Math.cos(angle) * distance;
+		double newY = y + Math.sin(angle) * distance;
 
 		// Write if the pen is down
 		if (penDown) {
 			Color oldColor = g2d.getColor();
 			setColor(color);
-			drawLine(x, y, newX, newY);
+			drawLine(round(x), round(y), round(newX), round(newY));
 			setColor(oldColor);
 		}
 		x = newX;
@@ -86,7 +90,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Jump to a specific location (without drawing)
-	 * 
+	 *
 	 * @param x
 	 *            X coordinate of the destination
 	 * @param y
@@ -109,12 +113,12 @@ public class TurtleGraphics extends FunGraphics {
 	 * @return The location of the turtle
 	 */
 	public Point getPosition() {
-		return new Point(x, y);
+		return new Point(round(x), round(y));
 	}
 
 	/**
 	 * Sets the width of the pen
-	 * 
+	 *
 	 * @param w
 	 */
 	public void setWidth(float w) {
@@ -130,7 +134,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Turn the direction of writing with the specified angle
-	 * 
+	 *
 	 * @param angle
 	 *            specified angle in degrees
 	 */
@@ -140,7 +144,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Set the direction of writing to the specified angle
-	 * 
+	 *
 	 * @param angle
 	 *            specified angle in degrees
 	 */
@@ -150,7 +154,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Turn the direction of writing with the specified angle
-	 * 
+	 *
 	 * @param angle
 	 *            specified angle in radians
 	 */
@@ -160,7 +164,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Set the direction of writing to the specified angle
-	 * 
+	 *
 	 * @param angle
 	 *            specified angle in radians
 	 */
@@ -168,7 +172,7 @@ public class TurtleGraphics extends FunGraphics {
 		this.angle = angle;
 	}
 
-	/** 
+	/**
 	 * @return The current turtle angle in radians
 	 */
 	public double getTurtleAngleRad() {
