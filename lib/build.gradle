@@ -11,8 +11,9 @@ tasks.named('jar') {
         }
 	archiveBaseName.set(rootProject.name)
 	archiveVersion.set(rootProject.version)
+	
+	from('src/main/java') {
+		include '**/*.java'
+	}
 }
 
-java {
-	withSourcesJar()
-}
