@@ -1,0 +1,18 @@
+
+plugins {
+	id 'java-library'
+}
+
+tasks.named('jar') {
+        manifest {
+                attributes('Implementation-Title': project.name,
+                                'Implementation-Version': project.version,
+                                'Main-Class': 'hevs.graphics.FunGraphics')
+        }
+	archiveBaseName.set(rootProject.name)
+	archiveVersion.set(rootProject.version)
+}
+
+java {
+	withSourcesJar()
+}
