@@ -10,14 +10,15 @@ java {
 }
 
 tasks.named('jar') {
-        manifest {
-                attributes('Implementation-Title': rootProject.name,
-                                'Implementation-Version': rootProject.version,
-                                'Main-Class': 'hevs.graphics.FunGraphics')
-        }
+	manifest {
+		attributes('Implementation-Title': rootProject.name,
+				'Implementation-Version': rootProject.version,
+				'Main-Class': 'hevs.graphics.FunGraphics')
+	}
 	archiveBaseName.set(rootProject.name)
 	archiveVersion.set(rootProject.version)
-	
+
+	// Add sources to the jar
 	from('src/main/java') {
 		include '**/*.java'
 	}
