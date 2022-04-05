@@ -11,7 +11,6 @@ public class BasicTest {
     @Test
     public void testWindowSize() {
         assumeFalse(headless);
-        System.out.println("no headless");
         final int w = 12;
         final int h = 20;
         FunGraphics f = new FunGraphics(w, h);
