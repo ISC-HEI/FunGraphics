@@ -14,7 +14,11 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.jar.Manifest;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
@@ -35,8 +39,24 @@ import hevs.graphics.utils.RepeatingReleasedEventsFixer;
  */
 public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLayerGraphics {
 
-	final int major = 1;
-	final int minor = 54;
+	public String versionString() {
+		try {
+			Enumeration<URL> resources = getClass().getClassLoader()
+					.getResources("META-INF/MANIFEST.MF");
+			if (!resources.hasMoreElements()) {
+				System.err.println("No version information, not using the jar?");
+				return "NO_VERSION";
+			}
+
+			while (resources.hasMoreElements()) {
+				Manifest manifest = new Manifest(resources.nextElement().openStream());
+				return manifest.getMainAttributes().getValue("Implementation-Version").toString();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "NO_VERSION";
+	}
 
 	/**
 	 * Creates a graphic window to draw onto.
@@ -50,7 +70,7 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 	 */
 	public FunGraphics(int width, int height, int xoffset, int yoffset, String title, boolean high_quality) {
 		super(width, height, xoffset, yoffset, title, high_quality);
-		System.out.println("Fungraphics - HES-SO Valais (mui), v" + major + "." + minor);
+		System.out.println("Fungraphics - HES-SO Valais (mui), v" + versionString());
 
 		// Emulates SimpleGraphics default behavior
 		this.clear(Color.white);
@@ -530,7 +550,7 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 
 	public static void main(String args[]) {
 		FunGraphics fg = new FunGraphics(320, 320, "Testing performance of FunGraphics");
-		
+
 		try {
 		} catch (Exception e) {
 
