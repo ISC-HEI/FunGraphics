@@ -110,6 +110,7 @@ public abstract class AcceleratedDisplay {
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice device = env.getDefaultScreenDevice();
 		GraphicsConfiguration gc = device.getDefaultConfiguration();
+		Toolkit tk = Toolkit.getDefaultToolkit();
 
 		/**
 		 * Get refresh rate and align FPS to it
@@ -159,8 +160,8 @@ public abstract class AcceleratedDisplay {
 
 		// Determine the new location of the window
 
-		fWidth = mainFrame.getSize().width;
-		fHeight = mainFrame.getSize().height;
+		fWidth = frontBuffer.getWidth();
+		fHeight = frontBuffer.getHeight();
 
 		int x = (dim.width - fWidth) / 2;
 		int y = (dim.height - fHeight) / 2;
