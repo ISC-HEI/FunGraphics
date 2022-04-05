@@ -50,7 +50,11 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 
 			while (resources.hasMoreElements()) {
 				Manifest manifest = new Manifest(resources.nextElement().openStream());
-				return manifest.getMainAttributes().getValue("Implementation-Version").toString();
+				String v = manifest.getMainAttributes().getValue("Implementation-Version").toString();
+				if (v.contains("dirty") || v.contains("-")) {
+					System.err.println("WARNING: using non-release version '"+v+"'");
+				}
+				return v;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
