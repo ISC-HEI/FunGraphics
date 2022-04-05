@@ -32,34 +32,53 @@ import hevs.graphics.utils.RepeatingReleasedEventsFixer;
 /**
  * A graphics framework for games and experiments. Developed for the INF1 course
  * given at HES-SO Valais.
- * 
+ *
  * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
- * @version 1.55
  * @date April 2013-2022
  */
 public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLayerGraphics {
 
-	public String versionString() {
+	public int major = 0;
+	public int minor = 0;
+	private String version = "ERROR:NO_VERSION";
+
+	/**
+	 * Get the version of the library
+	 *
+	 * @return A String containing the version
+	 */
+	public String version() {
+		return version;
+	}
+
+	/**
+	 * Initialize the members
+	 */
+	private void init() {
+		final String f = "META-INF/MANIFEST.MF";
+		String v = null;
 		try {
 			Enumeration<URL> resources = getClass().getClassLoader()
-					.getResources("META-INF/MANIFEST.MF");
+					.getResources(f);
 			if (!resources.hasMoreElements()) {
-				System.err.println("No version information, not using the jar?");
-				return "NO_VERSION";
+				System.err.println(String.format("WARNING:resource file '%s' not found, not using the jar?, version will be wrong", f));
+				return;
 			}
-
-			while (resources.hasMoreElements()) {
-				Manifest manifest = new Manifest(resources.nextElement().openStream());
-				String v = manifest.getMainAttributes().getValue("Implementation-Version").toString();
-				if (v.contains("dirty") || v.contains("-")) {
-					System.err.println("WARNING: using non-release version '"+v+"'");
-				}
-				return v;
+			Manifest manifest = new Manifest(resources.nextElement().openStream());
+			v = manifest.getMainAttributes().getValue("Implementation-Version").toString();
+			if (v.contains("dirty") || v.contains("-")) {
+				System.err.println(String.format("WARNING: using non-release version '%s'", v));
 			}
+			version = v;
+			String e[] = v.split("[.]");
+			major = Integer.parseInt(e[0]);
+			minor = Integer.parseInt(e[1]);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println(String.format("Failed to parse : %s'", v));
+			e.printStackTrace();
 		}
-		return "NO_VERSION";
 	}
 
 	/**
@@ -74,7 +93,8 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 	 */
 	public FunGraphics(int width, int height, int xoffset, int yoffset, String title, boolean high_quality) {
 		super(width, height, xoffset, yoffset, title, high_quality);
-		System.out.println("Fungraphics - HES-SO Valais (mui), v" + versionString());
+		init();
+		System.out.println("Fungraphics - HES-SO Valais (mui), v" + version());
 
 		// Emulates SimpleGraphics default behavior
 		this.clear(Color.white);
