@@ -22,8 +22,20 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
+def genDir = "$buildDir/gen/"
+
+task versionGen {
+	def versionFile = "$genDir/version.txt"
+	outputs.file(versionFile)
+	inputs.property('version', rootProject.version)
+	doLast {
+		new File(versionFile).text = """$rootProject.version
+"""
+	}
+}
 
 tasks.named('jar') {
+	dependsOn versionGen
 	manifest {
 		attributes('Implementation-Title': rootProject.name,
 				'Implementation-Version': rootProject.version,
@@ -35,6 +47,11 @@ tasks.named('jar') {
 	// Add sources to the jar
 	from('src/main/java') {
 		include '**/*.java'
+	}
+	from("$genDir") {
+		rename {
+			String filename -> "res/generated/"+filename
+		}
 	}
 }
 

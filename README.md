@@ -12,5 +12,6 @@ result : `lib/build/libs/fungraphics-VERSION.jar`
 
 ## How to release (and have a nice version number)
 0. git commit
-1. git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"
-2. [compile](#Compiling)
+0. git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"
+0. git push origin MAJOR.MINOR.SUB
+0. [compile](#Compiling)

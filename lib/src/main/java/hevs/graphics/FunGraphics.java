@@ -1,33 +1,19 @@
 package hevs.graphics;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.font.TextLayout;
-import java.awt.geom.AffineTransform;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.jar.Manifest;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
-
 import hevs.graphics.interfaces.DualLayerGraphics;
 import hevs.graphics.interfaces.Graphics;
 import hevs.graphics.utils.GraphicsBitmap;
 import hevs.graphics.utils.RepeatingReleasedEventsFixer;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
+import java.io.*;
+import java.util.Iterator;
 
 /**
  * A graphics framework for games and experiments. Developed for the INF1 course
@@ -55,17 +41,18 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 	 * Initialize the members
 	 */
 	private void init() {
-		final String f = "META-INF/MANIFEST.MF";
+		final String f = "/res/generated/version.txt";
 		String v = null;
 		try {
-			Enumeration<URL> resources = getClass().getClassLoader()
-					.getResources(f);
-			if (!resources.hasMoreElements()) {
-				System.err.println(String.format("WARNING:resource file '%s' not found, not using the jar?, version will be wrong", f));
+			InputStream in = getClass().getResourceAsStream(f);
+			if (in == null) {
+				System.err.println(String.format("resource '%s' not found, not using the .jar? version will be wrong", f));
 				return;
 			}
-			Manifest manifest = new Manifest(resources.nextElement().openStream());
-			v = manifest.getMainAttributes().getValue("Implementation-Version").toString();
+			BufferedReader b = new BufferedReader(new InputStreamReader(in));
+			if (b.ready()) {
+				v = b.readLine();
+			}
 			if (v.contains("dirty") || v.contains("-")) {
 				System.err.println(String.format("WARNING: using non-release version '%s'", v));
 			}
@@ -573,12 +560,10 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 	}
 
 	public static void main(String args[]) {
+		// Testing resources access
+		new GraphicsBitmap("/res/img/EN_HEI.png");
+
 		FunGraphics fg = new FunGraphics(320, 320, "Testing performance of FunGraphics");
-
-		try {
-		} catch (Exception e) {
-
-		}
 		fg.setPixel(10, 10);
 		fg.gameloopSample();
 	}
