@@ -36,10 +36,10 @@ def genDir = "$buildDir/gen/"
 
 task versionGen {
 	def versionFile = "$genDir/version.txt"
+	outputs.upToDateWhen { false }
 	outputs.file(versionFile)
-	inputs.property('version', rootProject.version)
 	doLast {
-		new File(versionFile).text = """$rootProject.version
+		new File(versionFile).text = """${gitVersion()}
 """
 	}
 }
