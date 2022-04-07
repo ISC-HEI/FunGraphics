@@ -36,6 +36,7 @@ task versionGen {
 
 tasks.named('jar') {
 	dependsOn versionGen
+	dependsOn test
 	manifest {
 		attributes('Implementation-Title': rootProject.name,
 				'Implementation-Version': rootProject.version,
@@ -50,9 +51,15 @@ tasks.named('jar') {
 	}
 	from("$genDir") {
 		rename {
-			String filename -> "res/generated/"+filename
+			String filename -> "res/generated/" + filename
 		}
 	}
 }
 
 version = rootProject.version
+
+task runJar(type: JavaExec) {
+	dependsOn jar
+	mainClass = "-jar";
+	args jar.archiveFile.get()
+}

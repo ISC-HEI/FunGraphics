@@ -523,8 +523,8 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 			synchronized (frontBuffer) {
 				clear(Color.white);
 				setColor(Color.red);
-				drawFilledOval(10, 10, 100+size, 100+size);
-				drawString(100, 250, "Hello world");
+				drawFilledOval(10, 10, 100 + size, 100 + size);
+				drawString(50, 250, "FunGraphics" + version());
 				setColor(Color.yellow);
 				drawFillRect(50 + i, 50 - i, 100 + i, 100 + i);
 			}
