@@ -23,7 +23,6 @@ public class TurtleGraphics extends FunGraphics {
 	private double y = fHeight / 2;
 	private boolean penDown = true;
 	private double angle = -Math.PI / 2.0; // Current rotation
-	private Color color = Color.black;
 
 	public TurtleGraphics(int width, int height, String windowName) {
 		super(width, height, windowName, true);
@@ -44,10 +43,7 @@ public class TurtleGraphics extends FunGraphics {
 	public void penDown() {
 		penDown = true;
 		// Write the pixel corresponding to the position
-		Color oldColor = g2d.getColor();
-		setColor(color);
 		setPixel(round(x), round(y));
-		setColor(oldColor);
 	}
 
 	/**
@@ -56,7 +52,7 @@ public class TurtleGraphics extends FunGraphics {
 	 * @param color
 	 */
 	public void changeColor(Color color) {
-		this.color = color;
+		setColor(color);
 	}
 
 	/**
@@ -79,10 +75,7 @@ public class TurtleGraphics extends FunGraphics {
 
 		// Write if the pen is down
 		if (penDown) {
-			Color oldColor = g2d.getColor();
-			setColor(color);
 			drawLine(round(x), round(y), round(newX), round(newY));
-			setColor(oldColor);
 		}
 		x = newX;
 		y = newY;
@@ -102,10 +95,7 @@ public class TurtleGraphics extends FunGraphics {
 
 		// If the pen is down, draw a point at destination
 		if (penDown) {
-			Color oldColor = g2d.getColor();
-			setColor(color);
 			setPixel(x, y);
-			setColor(oldColor);
 		}
 	}
 
@@ -165,7 +155,7 @@ public class TurtleGraphics extends FunGraphics {
 	}
 
 	/**
-	 * Set the direction of writing to the specified angle
+	 * Set the direction of writing to the specified angle.
 	 * Angle 0 is east (right). A positive angle is clockwise.
 	 * @param angle
 	 *            specified angle in radians
