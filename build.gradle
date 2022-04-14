@@ -80,3 +80,10 @@ task runJar(type: JavaExec) {
 	args jar.archiveFile.get()
 }
 
+task copyJar(type: Copy) {
+	from jar // copies output of file produced from jar task
+	into "$buildDir"
+	rename '.*', "$rootProject.name-dev.jar"
+}
+
+build.finalizedBy copyJar

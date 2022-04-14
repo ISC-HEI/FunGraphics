@@ -9,14 +9,22 @@ the [HES-SO Valais//Wallis](https://www.hevs.ch).
 
 ## Compiling
 
-* UNIX-like (Linux, MacOS X, ...) : ```./gradlew jar```
-* Windows : ```gradlew.bat jar```
+* UNIX-like (Linux, MacOS X, ...) : ```./gradlew build```
+* Windows : ```gradlew.bat build```
 
-result : `lib/build/libs/fungraphics-VERSION.jar`
+results :
+
+| File                                 | Description                                                         |
+|--------------------------------------|---------------------------------------------------------------------|
+| `build/fungraphics-dev.jar`          | The latest build of the library, constant name, useful for testing. |
+| `build/libs/fungraphics-VERSION.jar` | The same file with a [versioned](#Version) name.                    |
 
 ## Running
 
 ```gradle run```
+
+## Version
+The version number used in the file name and available using 
 
 ## How to release (and have a nice version number)
 
