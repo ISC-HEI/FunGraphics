@@ -127,8 +127,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * @return The current turtle angle (in degrees)
-	 * Angle 0 is east (right).
- A positive angle is clockwise.
+	 * Angle 0 is east (right). A positive angle is clockwise.
 	 */
 	public double getTurtleAngle() {
 		return (this.angle * 180.0 / Math.PI);
@@ -145,8 +144,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Set the direction of writing to the specified angle.
-	 * Angle 0 is east (right).
- A positive angle is clockwise.
+	 * Angle 0 is east (right). A positive angle is clockwise.
 	 *
 	 * @param angle
 	 *            specified angle in degrees
@@ -168,8 +166,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Set the direction of writing to the specified angle
-	 * Angle 0 is east (right).
- A positive angle is clockwise.
+	 * Angle 0 is east (right). A positive angle is clockwise.
 	 * @param angle
 	 *            specified angle in radians
 	 */
@@ -179,8 +176,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Get the turtle angle.
-	 * Angle 0 is east (right).
- A positive angle is clockwise.
+	 * Angle 0 is east (right). A positive angle is clockwise.
 	 * @return The current turtle angle in radians
 	 */
 	public double getTurtleAngleRad() {
