@@ -24,27 +24,30 @@ import java.util.Iterator;
  */
 public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLayerGraphics {
 
-	public int major = 0;
-	public int minor = 0;
-	private String version = "ERROR:NO_VERSION";
+	static public int major = 0;
+	static public int minor = 0;
+	static private String version = "ERROR:NO_VERSION";
+	static {
+		init();
+	}
 
 	/**
 	 * Get the version of the library
 	 *
 	 * @return A String containing the version
 	 */
-	public String version() {
+	static public String version() {
 		return version;
 	}
 
 	/**
 	 * Initialize the members
 	 */
-	private void init() {
+	private static void init() {
 		final String f = "/res/generated/version.txt";
 		String v = null;
 		try {
-			InputStream in = getClass().getResourceAsStream(f);
+			InputStream in = FunGraphics.class.getResourceAsStream(f);
 			if (in == null) {
 				System.err.println(String.format("resource '%s' not found, not using the .jar? version will be wrong", f));
 				return;
@@ -80,7 +83,6 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 	 */
 	public FunGraphics(int width, int height, int xoffset, int yoffset, String title, boolean high_quality) {
 		super(width, height, xoffset, yoffset, title, high_quality);
-		init();
 		System.out.println("Fungraphics - HES-SO Valais (mui), v" + version());
 
 		// Emulates SimpleGraphics default behavior
@@ -524,7 +526,7 @@ public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLay
 				clear(Color.white);
 				setColor(Color.red);
 				drawFilledOval(10, 10, 100 + size, 100 + size);
-				drawString(50, 250, "FunGraphics" + version());
+				drawString(50, 250, "FunGraphics " + version());
 				setColor(Color.yellow);
 				drawFillRect(50 + i, 50 - i, 100 + i, 100 + i);
 			}
