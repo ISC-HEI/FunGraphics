@@ -7,7 +7,7 @@ import java.awt.event.MouseMotionListener;
 
 /**
  * Graphics class that emulates the tortoise in the Logo programming language
- * The turtle starts looking up with a black color, pen up
+ * The turtle starts looking up with a black color, pen down
  *
  * Basic port implementation by Pierre Roduit, rewritten for use with {@link FunGraphics}
  * by Pierre-André Mudry.
@@ -21,7 +21,7 @@ public class TurtleGraphics extends FunGraphics {
 
 	private double x = fWidth / 2;
 	private double y = fHeight / 2;
-	private boolean penDown = false;
+	private boolean penDown = true;
 	private double angle = -Math.PI / 2.0; // Current rotation
 	private Color color = Color.black;
 
@@ -127,6 +127,8 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * @return The current turtle angle (in degrees)
+	 * Angle 0 is east (right).
+ A positive angle is clockwise.
 	 */
 	public double getTurtleAngle() {
 		return (this.angle * 180.0 / Math.PI);
@@ -134,16 +136,17 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Turn the direction of writing with the specified angle
-	 *
-	 * @param angle
-	 *            specified angle in degrees
+	 * A positive angle is clockwise.
+	 * @param angle specified angle in degrees
 	 */
 	public void turn(double angle) {
 		this.angle += angle * Math.PI / 180;
 	}
 
 	/**
-	 * Set the direction of writing to the specified angle
+	 * Set the direction of writing to the specified angle.
+	 * Angle 0 is east (right).
+ A positive angle is clockwise.
 	 *
 	 * @param angle
 	 *            specified angle in degrees
@@ -153,7 +156,8 @@ public class TurtleGraphics extends FunGraphics {
 	}
 
 	/**
-	 * Turn the direction of writing with the specified angle
+	 * Turn the direction of writing with the specified angle.
+	 * A positive angle is clockwise.
 	 *
 	 * @param angle
 	 *            specified angle in radians
@@ -164,7 +168,8 @@ public class TurtleGraphics extends FunGraphics {
 
 	/**
 	 * Set the direction of writing to the specified angle
-	 *
+	 * Angle 0 is east (right).
+ A positive angle is clockwise.
 	 * @param angle
 	 *            specified angle in radians
 	 */
@@ -173,6 +178,9 @@ public class TurtleGraphics extends FunGraphics {
 	}
 
 	/**
+	 * Get the turtle angle.
+	 * Angle 0 is east (right).
+ A positive angle is clockwise.
 	 * @return The current turtle angle in radians
 	 */
 	public double getTurtleAngleRad() {
