@@ -4,6 +4,9 @@ plugins {
 	id "com.palantir.git-version" version "0.14.0"
 }
 
+def name = 'fungraphics'  // <- Will change the .jar name
+def main = 'hevs.graphics.FunGraphics' // <- Main class name
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(8)
@@ -50,9 +53,9 @@ tasks.named('jar') {
 	dependsOn versionGen
 	dependsOn test
 	manifest {
-		attributes('Implementation-Title': rootProject.name,
+		attributes('Implementation-Title': name,
 				'Implementation-Version': rootProject.version,
-				'Main-Class': 'hevs.graphics.FunGraphics')
+				'Main-Class': main)
 	}
 	archiveBaseName.set(rootProject.name)
 	archiveVersion.set(rootProject.version)
