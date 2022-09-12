@@ -11,7 +11,6 @@ import java.util.Random;
  * Performance testers for {@link ListGraphics}
  * 
  * @author Pierre-Andre Mudry
- * @date 2012
  * @version 1.0
  */
 class ImageBackground implements Drawable {

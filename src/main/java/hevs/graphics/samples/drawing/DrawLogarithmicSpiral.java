@@ -7,7 +7,6 @@ import hevs.graphics.FunGraphics;
  * 
  * @author Pierre Roduit (pierre.roduit@hevs.ch)
  * @version 1.0
- * @date October 6th 2009
  *
  */
 public class DrawLogarithmicSpiral {

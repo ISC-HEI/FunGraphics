@@ -9,7 +9,6 @@ package hevs.graphics.utils;
  * Adapted from http://www.java-gaming.org/index.php?topic=22933.5
  * 
  * @author Pierre-Andre Mudry
- * @date March 2012 
  */
 public class GraphicTimer {
 	private long t1;

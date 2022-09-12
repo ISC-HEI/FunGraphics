@@ -9,7 +9,6 @@ import java.awt.Color;
  * application for {@link FunGraphics}
  * 
  * @author Pierre-Andre Mudry
- * @date April 2012
  */
 public class AnimatedCircle {
 

@@ -128,9 +128,9 @@ public class ImageGraphics extends JFrame {
 	 * Gets a single pixel from the background image and returns its
 	 * grayscale value
 	 * 
-	 * @param x
-	 * @param y
-	 * @return
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @return the pixel
 	 */
 	public int getPixelBW(int x, int y) {
 		if ((x < 0) || (y < 0) || (x >= w) || (y >= h)) {

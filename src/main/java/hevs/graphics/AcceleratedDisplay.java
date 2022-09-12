@@ -25,10 +25,6 @@ import javax.swing.UIManager;
  * 
  * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
  * @version 1.35
- * @date October 2012
- * @date January 2015
- * @date October 2018
- * @date October 2020
  */
 public abstract class AcceleratedDisplay {
 	/**

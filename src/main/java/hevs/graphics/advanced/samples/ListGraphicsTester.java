@@ -9,7 +9,6 @@ import java.util.Random;
  * Performance test application for {@link ListGraphics}
  * 
  * @author Pierre-Andre Mudry
- * @date 2012
  * @version 1.0
  */
 public class ListGraphicsTester {

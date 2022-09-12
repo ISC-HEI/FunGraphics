@@ -11,7 +11,6 @@ import java.awt.Color;
  * decoupling but explicit synchronization has to be done.
  * 
  * @author Pierre-Andre Mudry
- * @date March 2012
  */
 public class GameLoopSynchronized {
 

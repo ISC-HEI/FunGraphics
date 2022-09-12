@@ -11,14 +11,7 @@ import java.io.InputStreamReader;
  * - Double (double) - Boolean (boolean) <br>
  * - Character (char) <br>
  * <br>
- * <br>
- *
- * @author Patrice Rudaz (patrice.rudaz@hevs.ch)
- * @author Cathy Berthouzoz (cathy.berthouzoz@hevs.ch)
- * @modified Pierre-André Mudry
  * @see #readString()
- * @see #readLong()
- * @see #readLong()
  * @see #readDouble()
  * @see #readBoolean()
  * @see #readChar()

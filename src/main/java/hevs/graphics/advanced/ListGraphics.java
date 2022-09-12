@@ -12,20 +12,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.JFrame;
 
 /**
- * Extension of {@link #FunGraphics} that manages a list of {@link #Drawable}
- * objects that are displayed using the {@link #drawAllObjects()} method.
- * 
- * Rev 1.5 : added synchronization to avoid problems when drawing and modifying
- * the list at the same time changed list type to ArrayList for faster
- * implementation 
- * Rev 2.0 : now based on {@link FunGraphics} which provides much
- * greater performance and scalability. 
- * Rev 2.1 : removed methods that belong another class
- * 
- * @version 2.1, April 2012
- * @version 1.5, April 2011
- * @version 1.0, January 2010
- * @author <a href='mailto:pandre.mudry&#64;hevs.ch'> Pierre-Andre Mudry</a>
+ * Extension of {@link hevs.graphics.FunGraphics} that manages a list of {@link hevs.graphics.advanced.Drawable}
+ * objects that are displayed using the {@link #repaint()} method.
  */
 public class ListGraphics extends FunGraphics {
 	MouseListener mouseListener;

@@ -20,7 +20,6 @@ import java.util.Iterator;
  * given at HES-SO Valais.
  *
  * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
- * @date April 2013-2022
  */
 public class FunGraphics extends AcceleratedDisplay implements Graphics, DualLayerGraphics {
 

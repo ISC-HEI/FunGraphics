@@ -227,8 +227,8 @@ public interface Graphics {
 	 *            X position of the image
 	 * @param posY
 	 *            Y position of the image
-	 * @param filename
-	 *            path of the image file
+	 * @param bitmap
+	 *            A bitmap
 	 */
 	public abstract void drawPicture(int posX, int posY, GraphicsBitmap bitmap);
 
@@ -258,7 +258,7 @@ public interface Graphics {
 	 * @param angle
 	 *            The rotation angle of the image to be drawn
 	 * @param bitmap
-	 *            A {@link #SimpleGraphicsBitmap()} bitmap
+	 *            A bitmap
 	 */
 	public abstract void drawTransformedPicture(int posX, int posY, double angle, double scale, GraphicsBitmap bitmap);
 
@@ -272,7 +272,7 @@ public interface Graphics {
 	 * @param angle
 	 *            The rotation angle of the image to be drawn
 	 * @param bitmap
-	 *            A {@link #SimpleGraphicsBitmap()} bitmap
+	 *            A bitmap
 	 */
 	public abstract void drawMirroredPicture(int posX, int posY, double angle, GraphicsBitmap bitmap);
 
