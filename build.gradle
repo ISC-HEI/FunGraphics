@@ -52,6 +52,7 @@ task versionGen {
 tasks.named('jar') {
 	dependsOn versionGen
 	dependsOn test
+  dependsOn javadoc
 	manifest {
 		attributes('Implementation-Title': name,
 				'Implementation-Version': rootProject.version,
@@ -67,6 +68,10 @@ tasks.named('jar') {
 	from('src/main/kotlin') {
 		include '**/*.kt'
 	}
+  // Add docs to the jar
+  from(javadoc.outputs.files) {
+    include '**'
+  }
 
 	from("$genDir") {
 		rename {
@@ -87,6 +92,11 @@ task copyJar(type: Copy) {
 	from jar // copies output of file produced from jar task
 	into "$buildDir"
 	rename '.*', "$rootProject.name-dev.jar"
+}
+
+javadoc {
+    // without the -quiet option, the build fails
+    options.addStringOption('Xdoclint:none', '-quiet')
 }
 
 build.finalizedBy copyJar
