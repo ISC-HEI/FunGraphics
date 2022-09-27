@@ -1,5 +1,6 @@
 plugins {
 	id 'java-library'
+  id 'scala'
 	id "org.jetbrains.kotlin.jvm" version "1.6.20"
 	id "com.palantir.git-version" version "0.14.0"
 }
@@ -9,15 +10,16 @@ def main = 'hevs.graphics.FunGraphics' // <- Main class name
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(8)
+		languageVersion = JavaLanguageVersion.of(11)
 	}
 }
 
 kotlin {
 	jvmToolchain {
-		languageVersion = JavaLanguageVersion.of(8)
+		languageVersion = JavaLanguageVersion.of(11)
 	}
 }
+
 
 test {
 	useJUnitPlatform()
@@ -30,7 +32,9 @@ repositories {
 }
 
 dependencies {
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	implementation 'org.scala-lang:scala-library:2.13.9'
+  testImplementation 'org.scalatest:scalatest_2.13:3.2.0'
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 	testImplementation 'org.jetbrains.kotlin:kotlin-test'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 	testImplementation 'org.assertj:assertj-core:3.9.2'
@@ -52,7 +56,7 @@ task versionGen {
 tasks.named('jar') {
 	dependsOn versionGen
 	dependsOn test
-  dependsOn javadoc
+  dependsOn scaladoc
 	manifest {
 		attributes('Implementation-Title': name,
 				'Implementation-Version': rootProject.version,
@@ -68,8 +72,15 @@ tasks.named('jar') {
 	from('src/main/kotlin') {
 		include '**/*.kt'
 	}
+  from('src/main/scala') {
+		include '**/*.scala'
+	}
+
+  println("scaladoc.outputs.files:")
+  println(scaladoc.outputs.files)
   // Add docs to the jar
-  from(javadoc.outputs.files) {
+
+  from(scaladoc.outputs.files) {
     include '**'
   }
 
