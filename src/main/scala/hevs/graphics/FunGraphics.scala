@@ -70,6 +70,19 @@ object FunGraphics {
     fg.gameloopSample()
   }
 
+  def apply(width: Int, height: Int, xoffset: Int, yoffset: Int, title: String, high_quality: Boolean) : FunGraphics = {
+    new FunGraphics(width, height, xoffset, yoffset, title, high_quality)
+  }
+  def apply(width: Int, height: Int, title: String, high_quality: Boolean): FunGraphics = {
+    new FunGraphics(width, height, title, high_quality)
+  }
+  def apply(width: Int, height: Int, title: String): FunGraphics = {
+    new FunGraphics(width, height, title)
+  }
+  def apply(width: Int, height: Int): FunGraphics = {
+    new FunGraphics(width, height)
+  }
+
   init()
 }
 
