@@ -76,10 +76,7 @@ tasks.named('jar') {
 		include '**/*.scala'
 	}
 
-  println("scaladoc.outputs.files:")
-  println(scaladoc.outputs.files)
   // Add docs to the jar
-
   from(scaladoc.outputs.files) {
     include '**'
   }
