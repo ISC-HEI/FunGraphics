@@ -79,6 +79,13 @@ object FunGraphics {
   def apply(width: Int, height: Int, title: String): FunGraphics = {
     new FunGraphics(width, height, title)
   }
+
+  /**
+   * Create a FunGraphics window
+   * @param width the width of the window
+   * @param height the height of the window
+   * @return the window
+   */
   def apply(width: Int, height: Int): FunGraphics = {
     new FunGraphics(width, height)
   }
