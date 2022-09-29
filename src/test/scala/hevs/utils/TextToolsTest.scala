@@ -28,6 +28,24 @@ class TextToolsTest {
   }
 
   @Test
+  def minimalTestAll() = {
+
+    assertEquals("abc", redirect(TextTools.readText, "abc"))
+    assertEquals(123,redirect(TextTools.readInt,"123"))
+    assertEquals(12.3,redirect(TextTools.readDouble,"12.3"))
+    assertEquals(true,redirect(TextTools.readBoolean,"true"))
+    assertEquals('€',redirect(TextTools.readChar,"€"))
+    assertEquals("321",TextTools.reverse("123"))
+    assertEquals("ABC",TextTools.toUpperCase("abC"))
+    assertEquals("abc",TextTools.toLowerCase("AbC"))
+    assertEquals("Once upon",TextTools.capitalize("once upon"))
+    assertEquals("abc",TextTools.invert("cba"))
+    assertEquals("m rc",TextTools.deleteVowels("marc"))
+    assertEquals(" a  ",TextTools.deleteConsonants("marc"))
+    assertEquals("Hello world",TextTools.encrypt(TextTools.decrypt("Hello world")))
+  }
+
+  @Test
   def readText() = {
     val outIn = Seq(
       ("hello", "hello"),

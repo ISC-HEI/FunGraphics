@@ -73,7 +73,7 @@ object TextTools {
   /**
    * Get a char from the console.
    */
-  def readChar: Char = {
+  def readChar(): Char = {
     System.out.print("Enter a character : ")
     val stdin = new BufferedReader(new InputStreamReader(System.in))
     try stdin.readLine.charAt(0)
