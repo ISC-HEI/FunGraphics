@@ -19,7 +19,8 @@
     * `OK` to the message: "Library FunGraphics-M.m.p.jar will be added to the selected modules."
     * `OK` to close the `Project Structure...`
 * You can test the installation using that simple code which will display an empty window.
-  ```
+  
+  ```scala
   import hevs.graphics.FunGraphics
 
   object FunGraphicsHello extends App {
