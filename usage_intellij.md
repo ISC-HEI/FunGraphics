@@ -23,6 +23,6 @@
   import hevs.graphics.FunGraphics
 
   object FunGraphicsHello extends App {
-    val fungraphics : FunGraphics = new FunGraphics(300, 400)
+    val display: FunGraphics = new FunGraphics(300, 400)
   }
   ```
