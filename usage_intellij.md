@@ -16,7 +16,7 @@
     * Go in the `Project` > `Librairies` tab
     * Click on the `+` (`New Project Library`) > `Java`
     * Select the FunGraphics jar file inside your project > `OK`
-    * `OK` to the message: "Library FunGraphics-M.m.p.jar will be added to the selected modules."
+    * `OK` to the message: `"Library FunGraphics-M.m.p.jar will be added to the selected modules"`
     * `OK` to close the `Project Structure...`
 * You can test the installation using that simple code which will display an empty window.
   
