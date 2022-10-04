@@ -20,10 +20,6 @@ kotlin {
 	}
 }
 
-tasks.withType(ScalaCompile) {
-    scalaCompileOptions.additionalParameters = ["-g:source", "-release:11"]
-}
-
 test {
 	useJUnitPlatform()
 	//jvmArgs["-Djava.awt.headless=true"]
