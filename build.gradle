@@ -20,6 +20,9 @@ kotlin {
 	}
 }
 
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = ["-g:source", "-release:11"]
+}
 
 test {
 	useJUnitPlatform()
@@ -65,20 +68,17 @@ tasks.named('jar') {
 	archiveBaseName.set(rootProject.name)
 	archiveVersion.set(rootProject.version)
 
-	// Add sources to the jar
-	from('src/main/java') {
-		include '**/*.java'
-	}
 	from('src/main/kotlin') {
 		include '**/*.kt'
 	}
   from('src/main/scala') {
 		include '**/*.scala'
+    include '**/*.java'
 	}
-
-  // Add docs to the jar
   from(scaladoc.outputs.files) {
     include '**'
+    exclude 'hevs/utils/ScalaDocSetup.html'
+    exclude 'index.html'
   }
 
 	from("$genDir") {

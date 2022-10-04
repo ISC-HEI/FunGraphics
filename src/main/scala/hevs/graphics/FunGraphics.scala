@@ -18,7 +18,7 @@ import java.util.Iterator
 
 
 /**
- * A graphics framework for games and experiments. Developed for the INF1 course
+ * This is the object !!!! A graphics framework for games and experiments. Developed for the INF1 course
  * given at HES-SO Valais.
  *
  * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
@@ -63,6 +63,12 @@ object FunGraphics {
     }
   }
 
+  /**
+   * This is the class!!!! A graphics framework for games and experiments. Developed for the INF1 course
+   * given at HES-SO Valais.
+   *
+   * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
+   */
   def main(args: Array[String]): Unit = { // Testing resources access
     new GraphicsBitmap("/res/img/EN_HEI.png")
     val fg = new FunGraphics(320, 320, "Testing performance of FunGraphics")
