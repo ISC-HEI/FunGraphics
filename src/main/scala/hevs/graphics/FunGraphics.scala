@@ -207,7 +207,9 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
      *
      * @see hevs.graphics.Graphics#setPixel(int, int)
      */ override def setPixel(x: Int, y: Int): Unit = { // Test that the pixel to set is in the frame
-    if ((x < 0) || (y < 0) || (x >= getFrameWidth) || (y >= getFrameHeight)) if (checkBorders) System.out.println("[FunGraphics] Coordinates out of frame")
+    if ((x < 0) || (y < 0) || (x >= getFrameWidth) || (y >= getFrameHeight)) {
+      if (checkBorders) System.out.println("[FunGraphics] Coordinates out of frame")
+    }
     else frontBuffer.setRGB(x, y, g2d.getColor.getRGB)
   }
 
