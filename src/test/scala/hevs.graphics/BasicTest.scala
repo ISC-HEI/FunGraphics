@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Assumptions.assumeFalse
 import org.junit.jupiter.api.Test
-import java.awt.GraphicsEnvironment
-import java.awt.Point
+
+import java.awt.{Color, GraphicsEnvironment, Point}
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
@@ -24,6 +24,29 @@ class BasicTest {
   }
 
   @Test
+  def testBasicDrawing(): Unit = {
+    assumeFalse(headless)
+    val w = 2
+    val h = 3
+    val f = FunGraphics(w, h)
+    for (x <- 0 until f.getFrameWidth) {
+      for (y <- 0 until f.getFrameHeight) {
+        assertEquals(Color.WHITE, new Color(f.frontBuffer.getRGB(x,y)))
+      }
+    }
+    f.setPixel(1,1, Color.BLUE)
+    for (x <- 0 until f.getFrameWidth) {
+      for (y <- 0 until f.getFrameHeight) {
+        if (x == 1 && y == 1) {
+          assertEquals(Color.BLUE, new Color(f.frontBuffer.getRGB(x, y)))
+        } else {
+          assertEquals(Color.WHITE, new Color(f.frontBuffer.getRGB(x, y)))
+        }
+      }
+    }
+  }
+
+  @Test
   def testClick() = {
     assumeFalse(headless)
     val w = 200
@@ -36,7 +59,6 @@ class BasicTest {
         clicked = true
       }
     })
-
 
     val x = new FrameFixture(f.mainFrame)
     x.robot().click(f.mainFrame.getContentPane(), new Point(w / 2, h / 2))
