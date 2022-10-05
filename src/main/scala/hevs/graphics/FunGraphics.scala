@@ -205,85 +205,48 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     mainFrame.getContentPane.addMouseMotionListener(m)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#clear()
-     */ override def clear(): Unit = {
+  override def clear(): Unit = {
     g2d.clearRect(0, 0, fWidth, fHeight)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#clear(java.awt.Color)
-     */ override def clear(c: Color): Unit = {
+  override def clear(c: Color): Unit = {
     val old = g2d.getBackground
     g2d.setBackground(c)
     g2d.clearRect(0, 0, fWidth, fHeight)
     g2d.setBackground(old)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#setColor(java.awt.Color)
-     */ override def setColor(c: Color): Unit = {
+  override def setColor(c: Color): Unit = {
     g2d.setColor(c)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#setPixel(int, int)
-     */ override def setPixel(x: Int, y: Int): Unit = { // Test that the pixel to set is in the frame
+  override def setPixel(x: Int, y: Int): Unit = { // Test that the pixel to set is in the frame
     if ((x < 0) || (y < 0) || (x >= getFrameWidth) || (y >= getFrameHeight)) {
       if (checkBorders) System.out.println("[FunGraphics] Coordinates out of frame")
     }
     else frontBuffer.setRGB(x, y, g2d.getColor.getRGB)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#setPixel(int, int, java.awt.Color)
-     */ override def setPixel(x: Int, y: Int, c: Color): Unit = {
+  override def setPixel(x: Int, y: Int, c: Color): Unit = {
     val oldColor = g2d.getColor
     setColor(c)
     setPixel(x, y)
     setColor(oldColor)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#setPixel(int, int, int)
-     */ override def setPixel(x: Int, y: Int, c: Int): Unit = {
+  override def setPixel(x: Int, y: Int, c: Int): Unit = {
     setPixel(x, y, new Color(c))
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#setPenWidth(float)
-     */ override def setPenWidth(width: Float): Unit = {
+  override def setPenWidth(width: Float): Unit = {
     g2d.setStroke(new BasicStroke(width))
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawLine(int, int, int, int)
-     */ override def drawLine(p1x: Int, p1y: Int, p2x: Int, p2y: Int): Unit = {
+  override def drawLine(p1x: Int, p1y: Int, p2x: Int, p2y: Int): Unit = {
     g2d.drawLine(p1x, p1y, p2x, p2y)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawFilledPolygon(java.awt.Polygon,
-     * java.awt.Color)
-     */ override def drawFilledPolygon(p: Polygon, c: Color): Unit = {
+  override def drawFilledPolygon(p: Polygon, c: Color): Unit = {
     val oldColor = g2d.getColor
     setColor(c)
     g2d.fill(p)
@@ -291,76 +254,39 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     setColor(oldColor)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawRect(int, int, int, int)
-     */ override def drawRect(posX: Int, posY: Int, width: Int, height: Int): Unit = {
+  override def drawRect(posX: Int, posY: Int, width: Int, height: Int): Unit = {
     g2d.drawRect(posX, posY, width, height)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawFillRect(int, int, int, int)
-     */ override def drawFillRect(posX: Int, posY: Int, width: Int, height: Int): Unit = {
+  override def drawFillRect(posX: Int, posY: Int, width: Int, height: Int): Unit = {
     g2d.fillRect(posX, posY, width, height)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawRect(java.awt.Rectangle)
-     */ override def drawRect(rect: Rectangle): Unit = {
+  override def drawRect(rect: Rectangle): Unit = {
     g2d.drawRect(rect.getX.toInt, rect.y, rect.getWidth.toInt, rect.getHeight.toInt)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawFillRect(java.awt.Rectangle)
-     */ override def drawFillRect(rect: Rectangle): Unit = {
+  override def drawFillRect(rect: Rectangle): Unit = {
     g2d.drawRect(rect.getX.toInt, rect.y, rect.getWidth.toInt, rect.getHeight.toInt)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawCircle(int, int, int)
-     */ override def drawCircle(posX: Int, posY: Int, f: Int): Unit = {
+  override def drawCircle(posX: Int, posY: Int, f: Int): Unit = {
     g2d.drawOval(posX, posY, f, f)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawFilledCircle(int, int, int)
-     */ override def drawFilledCircle(posX: Int, posY: Int, radius: Int): Unit = {
+  override def drawFilledCircle(posX: Int, posY: Int, radius: Int): Unit = {
     g2d.fillOval(posX, posY, radius, radius)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawFilledOval(int, int, int, int)
-     */ override def drawFilledOval(posX: Int, posY: Int, width: Int, height: Int): Unit = {
+  override def drawFilledOval(posX: Int, posY: Int, width: Int, height: Int): Unit = {
     g2d.fillOval(posX, posY, width, height)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawString(int, int, java.lang.String)
-     */ override def drawString(posX: Int, posY: Int, str: String): Unit = {
+  override def drawString(posX: Int, posY: Int, str: String): Unit = {
     g2d.drawString(str, posX, posY)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawString(int, int, java.lang.String,
-     * java.awt.Color, int)
-     */ override def drawString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
+  override def drawString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
     val oldFont = g2d.getFont
     val oldColor = g2d.getColor
     val font = new Font("SansSerif", Font.PLAIN, size)
@@ -371,12 +297,7 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.setColor(oldColor)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawFancyString(int, int, java.lang.String,
-     * java.awt.Color, int)
-     */ override def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
+  override def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
     val g2 = g2d
     val oldFont = g2d.getFont
     val oldColor = g2d.getColor
@@ -390,30 +311,15 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2.setColor(oldColor)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawPicture(int, int,
-     * hevs.graphics.utils.GraphicsBitmap)
-     */ override def drawPicture(posX: Int, posY: Int, bitmap: GraphicsBitmap): Unit = {
+  override def drawPicture(posX: Int, posY: Int, bitmap: GraphicsBitmap): Unit = {
     g2d.drawImage(bitmap.mBitmap, posX - bitmap.getWidth / 2, posY - bitmap.getHeight / 2, null)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawTransformedPicture(int, int, double, double,
-     * java.lang.String)
-     */ override def drawTransformedPicture(posX: Int, posY: Int, angle: Double, scale: Double, imageName: String): Unit = {
+  override def drawTransformedPicture(posX: Int, posY: Int, angle: Double, scale: Double, imageName: String): Unit = {
     drawTransformedPicture(posX, posY, angle, scale, new GraphicsBitmap(imageName))
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawTransformedPicture(int, int, double, double,
-     * hevs.graphics.utils.GraphicsBitmap)
-     */ override def drawTransformedPicture(posX: Int, posY: Int, angle: Double, scale: Double, bitmap: GraphicsBitmap): Unit = {
+  override def drawTransformedPicture(posX: Int, posY: Int, angle: Double, scale: Double, bitmap: GraphicsBitmap): Unit = {
     val t = new AffineTransform
     t.rotate(angle, posX, posY)
     t.translate(posX - bitmap.getWidth / 2 * scale, posY - bitmap.getHeight / 2 * scale)
@@ -421,12 +327,7 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.drawImage(bitmap.mBitmap, t, null)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#drawMirroredPicture(int, int, double,
-     * hevs.graphics.utils.GraphicsBitmap)
-     */ override def drawMirroredPicture(posX: Int, posY: Int, angle: Double, bitmap: GraphicsBitmap): Unit = {
+  override def drawMirroredPicture(posX: Int, posY: Int, angle: Double, bitmap: GraphicsBitmap): Unit = {
     val t = new AffineTransform
     t.rotate(angle, posX, posY)
     t.translate(posX + bitmap.getWidth / 2, posY - bitmap.getHeight / 2)
@@ -434,34 +335,17 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.drawImage(bitmap.mBitmap, t, null)
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.DualLayerGraphics#drawBackground()
-     */ override def drawBackground(): Unit = {
+  override def drawBackground(): Unit = {
     g2d.setBackground(TRANSPARENT)
     g2d = backg2d
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.DualLayerGraphics#drawForeground()
-     */ override def drawForeground(): Unit = {
+  override def drawForeground(): Unit = {
     g2d = frontg2d
   }
 
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#getFrameWidth()
-     */ override def getFrameWidth: Int = fWidth
-
-  /*
-     * (non-Javadoc)
-     *
-     * @see hevs.graphics.Graphics#getFrameHeight()
-     */ override def getFrameHeight: Int = fHeight
+  override def getFrameWidth(): Int = fWidth
+  override def getFrameHeight(): Int = fHeight
 
   /**
    * A sample game loop using explicit synchronization (if display flickers)

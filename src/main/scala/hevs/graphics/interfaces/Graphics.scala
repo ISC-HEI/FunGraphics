@@ -128,6 +128,8 @@ trait Graphics {
   def drawFillRect(posX: Int, posY: Int, width: Int, height: Int): Unit
 
   /**
+   * Draw an empty rectangle in the color selected with setColor
+   *
    * @param rect
    * rectangle to draw
    */
@@ -276,9 +278,15 @@ trait Graphics {
   def drawMirroredPicture(posX: Int, posY: Int, angle: Double, bitmap: GraphicsBitmap): Unit
 
   /**
-   * Getters and setters
+   * Get the frame width
+   * @return the frame width
    */
-  def getFrameWidth: Int
+  def getFrameWidth(): Int
 
-  def getFrameHeight: Int
+  /**
+   * Get the frame height
+   *
+   * @return the frame height
+   */
+  def getFrameHeight(): Int
 }

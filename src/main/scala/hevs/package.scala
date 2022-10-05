@@ -5,10 +5,10 @@ package hevs
  *
  * ==Overview==
  *
- * Here is how to create a window and draw a pixel on it using  [[FunGraphics]] :
+ * Here is how to create a window and draw a circle on it using  [[FunGraphics]] :
  * {{{
- *   val f = FunGraphics(400,300)
- *   f.setPixel(200,150)
+ *  val f = new FunGraphics(400, 300)
+ *  f.drawCircle(200,150, 50)
  * }}}
  */
 package object graphics {}

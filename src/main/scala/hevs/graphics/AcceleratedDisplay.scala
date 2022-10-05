@@ -71,7 +71,8 @@ abstract class AcceleratedDisplay {
   protected var current_fps = .0
 
   /**
-   * @param x Selects if the FPS should be printed or not
+   * Selects if the FPS should be printed
+   * @param x FPS will be printed when set to true
    */
   def displayFPS(x: Boolean): Unit = {
     DISPLAY_FPS = x

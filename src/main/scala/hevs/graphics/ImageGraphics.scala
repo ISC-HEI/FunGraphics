@@ -1,7 +1,6 @@
 package hevs.graphics
 
 import java.awt.Color
-import java.awt.Dimension
 import java.awt.Graphics
 import java.awt.Toolkit
 import java.awt.image.BufferedImage
@@ -10,11 +9,7 @@ import javax.swing.JFrame
 
 
 /**
- * This class was made to deal with images as multidimensional arrays.
- * Mainly used in the <code>ImageProcessing</code> lab. It expects the images to reside in the <code>src</code> directory
- *
- * @author Pierre-André Mudry
- * @version 1.0
+ * [ImageGraphics] helpers.
  */
 @SerialVersionUID(6832022057915586803L)
 object ImageGraphics {
@@ -60,6 +55,19 @@ object ImageGraphics {
   }
 }
 
+/**
+ * This class was made to deal with images as multidimensional arrays.
+ * Mainly used in the <code>ImageProcessing</code> lab. It expects the images to reside in the <code>src</code> directory
+ *
+ * @author Pierre-André Mudry
+ * @version 1.0
+ * @constructor
+ * @param backGroundFilePath the path of the file
+ * @param windowTitle the title
+ * @param xPositionOffset the x offset
+ * @param yPositionOffset the y offet
+ * @inheritdoc
+ */
 @SerialVersionUID(6832022057915586803L)
 class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val xPositionOffset: Int, val yPositionOffset: Int) extends JFrame {
   private var backgroundBitmap: BufferedImage = null
@@ -100,7 +108,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
   /**
    * Sets a grayscale pixel, does not sets values for invalid pixels
    * outside the screen. Does not repaint the screen either because it
-   * is slow. If required, please call {@link # repaint ( )} if needed after
+   * is slow. If required, please call [[java.awt.Component#repaint()]] if needed after
    * you have updated all the pixels you need.
    *
    * @param x
