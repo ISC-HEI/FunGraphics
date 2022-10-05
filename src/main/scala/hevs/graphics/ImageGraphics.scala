@@ -66,7 +66,6 @@ object ImageGraphics {
  * @param windowTitle the title
  * @param xPositionOffset the x offset
  * @param yPositionOffset the y offet
- * @inheritdoc
  */
 @SerialVersionUID(6832022057915586803L)
 class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val xPositionOffset: Int, val yPositionOffset: Int) extends JFrame {
