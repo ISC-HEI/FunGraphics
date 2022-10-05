@@ -11,10 +11,10 @@ import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 
 class BasicTest {
-  private val headless = GraphicsEnvironment.isHeadless()
+  private val headless = GraphicsEnvironment.isHeadless
 
   @Test
-  def testWindowSize() = {
+  def testWindowSize(): Unit = {
     assumeFalse(headless)
     val w = 12
     val h = 20
@@ -47,7 +47,7 @@ class BasicTest {
   }
 
   @Test
-  def testClick() = {
+  def testClick(): Unit = {
     assumeFalse(headless)
     val w = 200
     val h = 150
@@ -61,8 +61,8 @@ class BasicTest {
     })
 
     val x = new FrameFixture(f.mainFrame)
-    x.robot().click(f.mainFrame.getContentPane(), new Point(w / 2, h / 2))
-    x.robot().click(f.mainFrame.getContentPane(), new Point(0, 0))
+    x.robot().click(f.mainFrame.getContentPane, new Point(w / 2, h / 2))
+    x.robot().click(f.mainFrame.getContentPane, new Point(0, 0))
 
     println(s"clicked:$clicked")
     assertTrue(clicked)

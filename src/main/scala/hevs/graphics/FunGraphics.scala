@@ -6,22 +6,14 @@ import hevs.graphics.utils.GraphicsBitmap
 import hevs.graphics.utils.RepeatingReleasedEventsFixer
 
 import javax.imageio.ImageIO
-import javax.imageio.ImageWriter
-import javax.imageio.stream.ImageOutputStream
 import java.awt._
 import java.awt.event._
 import java.awt.font.TextLayout
 import java.awt.geom.AffineTransform
 import java.io._
-import java.util
-import java.util.Iterator
-
 
 /**
- * This is the object !!!! A graphics framework for games and experiments. Developed for the INF1 course
- * given at HES-SO Valais.
- *
- * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
+ * Factory for [[hevs.graphics.FunGraphics]].
  */
 object FunGraphics {
   var major = 0
@@ -64,10 +56,8 @@ object FunGraphics {
   }
 
   /**
-   * This is the class!!!! A graphics framework for games and experiments. Developed for the INF1 course
-   * given at HES-SO Valais.
-   *
-   * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
+   * Graphical demo/test of the library.
+   * @param args unused
    */
   def main(args: Array[String]): Unit = { // Testing resources access
     new GraphicsBitmap("/res/img/EN_HEI.png")
@@ -76,20 +66,50 @@ object FunGraphics {
     fg.gameloopSample()
   }
 
+  /**
+   * Creates a FunGraphics window
+   *
+   * @param width        Width of the window
+   * @param height       Height of the window
+   * @param xoffset      X-Position of the window on the screen
+   * @param yoffset      Y-Position of the window on the screen
+   * @param title        Title of the window
+   * @param high_quality Use high quality rendering
+   * @return the window
+   */
   def apply(width: Int, height: Int, xoffset: Int, yoffset: Int, title: String, high_quality: Boolean) : FunGraphics = {
     new FunGraphics(width, height, xoffset, yoffset, title, high_quality)
   }
+
+  /**
+   * Creates a FunGraphics window
+   *
+   * @param width        Width of the window
+   * @param height       Height of the window
+   * @param title        Title of the window
+   * @param high_quality Use high quality rendering
+   * @return the window
+   */
   def apply(width: Int, height: Int, title: String, high_quality: Boolean): FunGraphics = {
     new FunGraphics(width, height, title, high_quality)
   }
+
+  /**
+   * Creates a FunGraphics window
+   *
+   * @param width        Width of the window
+   * @param height       Height of the window
+   * @param title        Title of the window
+   * @return the window
+   */
   def apply(width: Int, height: Int, title: String): FunGraphics = {
     new FunGraphics(width, height, title)
   }
 
   /**
-   * Create a FunGraphics window
-   * @param width the width of the window
-   * @param height the height of the window
+   * Creates a FunGraphics window
+   * @param width        Width of the window
+   * @param height       Height of the window
    * @return the window
    */
   def apply(width: Int, height: Int): FunGraphics = {
@@ -99,18 +119,21 @@ object FunGraphics {
   init()
 }
 
-class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset: Int, val title: String, val high_quality: Boolean)
-
 /**
- * Creates a graphic window to draw onto.
+ * A graphics framework for games and experiments. Developed for the PImp and INF1 courses given at HES-SO Valais.
  *
+ * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
+ *
+ * @constructor Creates a graphic window to draw onto.
  * @param width        Width of the window
  * @param height       Height of the window
  * @param xoffset      X-Position of the window on the screen
  * @param yoffset      Y-Position of the window on the screen
  * @param title        Title of the window
  * @param high_quality Use high quality rendering
- */ extends AcceleratedDisplay(width, height, xoffset, yoffset, title, high_quality) with Graphics with DualLayerGraphics {
+ */
+class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset: Int, val title: String, val high_quality: Boolean)
+  extends AcceleratedDisplay(width, height, xoffset, yoffset, title, high_quality) with Graphics with DualLayerGraphics {
   System.out.println("Fungraphics - HES-SO Valais (mui), v" + FunGraphics.version)
   // Emulates SimpleGraphics default behavior
   this.clear(Color.white)
@@ -133,6 +156,10 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
   /**
    * Creates a graphic window to draw onto with a given title
    *
+   * @param width        Width of the display window
+   * @param height       Height of the display window
+   * @param title        Title of the display window
+   *
    * @see #FunGraphics(int, int, String, boolean)
    */
   def this(width: Int, height: Int, title: String) = {
@@ -140,7 +167,10 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
   }
 
   /**
-   * Creates a graphic window to draw onto
+   * Creates a graphic window to draw onto with a given title
+   *
+   * @param width  Width of the display window
+   * @param height Height of the display window
    *
    * @see #FunGraphics(int, int, String, boolean)
    */

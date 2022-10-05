@@ -8,7 +8,8 @@ import java.awt.event.MouseMotionListener
 
 /**
  * Graphics class that emulates the tortoise in the Logo programming language
- * The turtle starts looking up with a black color, pen down
+ *
+ * The turtle starts at the center of the window, looking up with a black color and pen down
  *
  * Basic port implementation by Pierre Roduit, rewritten for use with {@link FunGraphics}
  * by Pierre-André Mudry.
@@ -16,7 +17,12 @@ import java.awt.event.MouseMotionListener
  * @see <a href="http://en.wikipedia.org/wiki/Turtle_graphics">Wikipedia
  *      description of Turtle Graphics</a>
  * @author <a href='mailto:pandre.mudry&#64;hevs.ch'> Pierre-Andre Mudry</a>
- * @version 2.01 Using {@link FunGraphics} as main class
+ * @version 2.01 Using [[FunGraphics]] as main class
+ *
+ * @constructor Creates a turtle window
+ * @param width        Width of the window
+ * @param height       Height of the window
+ * @param windowName   Title of the window
  */
 class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGraphics(width, height, windowName, true) {
   this.checkBorders = false
@@ -25,6 +31,12 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
   private var pDown = true
   private var angle = -Math.PI / 2.0 // Current rotation
 
+  /**
+   * Creates a turtle window
+   *
+   * @param width  Width of the window
+   * @param height Height of the window
+   */
   def this(width: Int, height: Int) = {
     this(width, height, null)
   }
