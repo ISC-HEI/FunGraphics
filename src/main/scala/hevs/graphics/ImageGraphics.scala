@@ -179,7 +179,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
    *
    * @return The arrays of gray pixels
    */
-  def getPixelsBW: Array[Array[Int]] = {
+  def getPixelsBW(): Array[Array[Int]] = {
     val values = Array.ofDim[Int](w, h)
     for (i <- 0 until w) {
       for (j <- 0 until h) {
@@ -195,7 +195,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
    *
    * @return The arrays of pixels
    */
-  def getPixelsColor: Array[Array[Color]] = {
+  def getPixelsColor(): Array[Array[Color]] = {
     val values = Array.ofDim[Color](w, h)
     for (i <- 0 until w) {
       for (j <- 0 until h) {
