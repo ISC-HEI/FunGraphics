@@ -34,7 +34,6 @@ Here is an example : 1.5.7-3-g2aabbbf.dirty
 ## How to release (and have a nice version number)
 
 1. git commit
-1git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"
-1git push origin MAJOR.MINOR.SUB
-1[compile](#Compiling)
-
+1. git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"
+1. git push origin MAJOR.MINOR.SUB
+1. [compile](#Compiling)
