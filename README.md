@@ -1,10 +1,10 @@
 # FunGraphics
 
-A library for displaying things.
+A library used for teaching computer science in the [ISC](https://www.hevs.ch/isc) degree programme, notably for the course 101.1.
 
 ## Origin
 
-This library has been developed for the [`PImp`](https://isc.hevs.ch/learn/courses/101-1) and the[`inf1`](https://inf1.begincoding.net) courses at the [HES-SO Valais//Wallis](https://www.hevs.ch).
+This library has been developed for the [`PImp`](https://isc.hevs.ch/learn/courses/101-1) and the [`inf1`](https://inf1.begincoding.net) courses at the [HES-SO Valais//Wallis](https://www.hevs.ch).
 
 ## Compiling
 
