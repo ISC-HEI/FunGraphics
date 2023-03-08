@@ -101,7 +101,7 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
   /**
    * @return The location of the turtle
    */
-  def getPosition = new Point(round(x), round(y))
+  def getPosition() = new Point(round(x), round(y))
 
   /**
    * Sets the width of the pen
@@ -116,7 +116,7 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
    * @return The current turtle angle (in degrees)
    *         Angle 0 is east (right). A positive angle is clockwise.
    */
-  def getTurtleAngle: Double = this.angle * 180.0 / Math.PI
+  def getTurtleAngle(): Double = this.angle * 180.0 / Math.PI
 
   /**
    * Turn the direction of writing with the specified angle
@@ -167,7 +167,7 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
    *
    * @return The current turtle angle in radians
    */
-  def getTurtleAngleRad: Double = this.angle
+  def getTurtleAngleRad(): Double = this.angle
 
   def setMouseMotionManager(mouseMotionListener: MouseMotionListener): Unit = {
     this.mainFrame.addMouseMotionListener(mouseMotionListener)
