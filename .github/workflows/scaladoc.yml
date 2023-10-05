@@ -1,12 +1,9 @@
 name: Generate and Deploy ScalaDoc
 
 on:
-  push:
-    branches:
-      - dev
-  # create:
-    # tags:
-    #   - '*'
+  create:
+    tags:
+      - '*'
 
 jobs:
   build:
