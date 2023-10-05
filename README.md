@@ -1,6 +1,7 @@
 # FunGraphics
 
 A library used for teaching computer science in the [ISC](https://www.hevs.ch/isc) degree programme, notably for the course 101.1.
+The documentation is available [here](https://isc-hei.github.io/FunGraphics/). It is automatically built and published each time a new version tag is added to the repo.
 
 ## Origin
 
