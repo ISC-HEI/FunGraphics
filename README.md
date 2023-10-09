@@ -12,6 +12,8 @@ This library has been developed for the [`PImp`](https://isc.hevs.ch/learn/cours
 
 ## Compiling
 
+For releasing a new version once everything has been tested, locally run
+
 * UNIX-like (Linux, MacOS X, ...) : ```./gradlew build```
 * Windows : ```gradlew.bat build```
 
@@ -40,4 +42,4 @@ Here is an example : `1.5.7-3-g2aabbbf.dirty`
 1. `git commit`
 1. `git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"`
 1. `git push origin MAJOR.MINOR.SUB`
-1. [Compile](#Compiling)
+2. This commits everyhing and tags it adequately. When this has been done, you can then draft a new release and upload the corresponding `jar` file from above in Github releases. Creating a tag triggers the documentation update. Voilà, you're all set.
