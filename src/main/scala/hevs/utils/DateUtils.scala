@@ -3,7 +3,6 @@ package hevs.utils
 import java.text.{ParseException, SimpleDateFormat}
 import java.util.Date
 
-
 /**
  * @author Pierre-André Mudry, HES-SO Valais 
  * @version 1.0
@@ -66,11 +65,13 @@ object DateUtils {
   def main(args: Array[String]): Unit = {
     val first = DateUtils.createDate("1/1/2000")
     val second = DateUtils.createDate("1/1/2001")
+
     // It also takes into account leap years (2000)
-    System.out.println("There were " + DateUtils.nDays(first, second) + " days in 2000")
+    println("There were " + DateUtils.nDays(first, second) + " days in 2000")
+
     // How old are you in days ?
     val birthdate = DateUtils.createDate("12/10/1977")
     val now = new Date
-    System.out.println("You are " + DateUtils.nDays(now, birthdate) + " days old")
+    println("You are " + DateUtils.nDays(now, birthdate) + " days old")
   }
 }

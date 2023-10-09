@@ -18,13 +18,6 @@ import javax.swing.SwingWorker
 import javax.swing.UIManager
 
 
-/**
- * Base class for every display window. Developed for the INF1 course given at
- * HES-SO Valais by Pierre-Andre Mudry, see for instance {@link FunGraphics}
- *
- * @author Pierre-André Mudry <a href='mailto:pandre.mudry&#64;hevs.ch'></a>
- * @version 1.35
- */
 object AcceleratedDisplay {
   protected val VERBOSE = true
   protected val numBuffers = 2
@@ -46,6 +39,11 @@ object AcceleratedDisplay {
 
 }
 
+/**
+ * Base class for every display window, see for instance [[FunGraphics]]
+ *
+ * @author Pierre-André Mudry
+ */
 abstract class AcceleratedDisplay {
   /**
    * The subclass which create the windows frame
