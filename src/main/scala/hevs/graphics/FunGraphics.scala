@@ -369,7 +369,9 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
                                shadowX: Int = 0,
                                shadowY: Int = 0,
                                shadowColor: Color = Color.GRAY,
-                               shadowThickness: Int = 0): Unit = {
+                               shadowThickness: Int = 0,
+                               outlineColor: Color = Color.WHITE,
+                               outlineThickness: Int = 0): Unit = {
 
     val font: Font = new Font(fontFamily, fontStyle, fontSize)
 
@@ -402,6 +404,14 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
         shadowColor,
         SwingConstants.CENTER,
         SwingConstants.CENTER)
+    }
+
+    if (outlineThickness > 0) {
+      for (dy: Int <- -outlineThickness to outlineThickness) {
+        for (dx: Int <- -outlineThickness to outlineThickness) {
+          drawString(posX + dx, posY + dy, str, font, outlineColor, halign, valign)
+        }
+      }
     }
 
     drawString(posX, posY, str, font, color, halign, valign)

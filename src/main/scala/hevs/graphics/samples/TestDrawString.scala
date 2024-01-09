@@ -75,4 +75,25 @@ object TestDrawString extends App {
       )
     }
   }
+
+
+  for (y: Int <- 0 until 3) {
+    for (x: Int <- 0 until 3) {
+      val posX: Int = 350 + x * 100
+      val posY: Int = 350 + y * 100
+
+      fg.drawFancyString(
+        posX,
+        posY,
+        "Test",
+        color = Color.WHITE,
+        halign = SwingConstants.CENTER,
+        valign = SwingConstants.CENTER,
+        outlineThickness = x+y*3,
+        outlineColor = Color.BLACK,
+        fontFamily = "Arial",
+        fontStyle = Font.BOLD
+      )
+    }
+  }
 }

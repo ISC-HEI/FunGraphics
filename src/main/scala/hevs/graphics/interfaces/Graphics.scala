@@ -307,7 +307,7 @@ trait Graphics {
   def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit
 
   /**
-   * Draws a text with a shadow
+   * Draws a text with a shadow or outline
    * @param posX
    * X position of the string
    * @param posY
@@ -334,8 +334,12 @@ trait Graphics {
    * the shadow color
    * @param shadowThickness
    * the shadow thickness
+   * @param outlineColor
+   * the outline color
+   * @param outlineThickness
+   * the outline thickness
    */
-  def drawFancyString(posX: Int, posY: Int, str: String, fontFamily: String, fontStyle: Int, fontSize: Int, color: Color, halign: Int, valign: Int, shadowX: Int, shadowY: Int, shadowColor: Color, shadowThickness: Int): Unit
+  def drawFancyString(posX: Int, posY: Int, str: String, fontFamily: String, fontStyle: Int, fontSize: Int, color: Color, halign: Int, valign: Int, shadowX: Int, shadowY: Int, shadowColor: Color, shadowThickness: Int, outlineColor: Color, outlineThickness: Int): Unit
 
   /**
    * Draw a centered picture from a file (gif, jpg, png) to <code>(posX, posY)</code>
