@@ -284,7 +284,10 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
   }
 
   override def getStringSize(str: String, font: Font): Rectangle2D = {
-    font.getStringBounds(str, g2d.getFontRenderContext)
+    val metrics: LineMetrics = font.getLineMetrics(str, g2d.getFontRenderContext)
+    val rect: Rectangle2D = font.getStringBounds(str, g2d.getFontRenderContext)
+    val height: Double = rect.getHeight - metrics.getDescent - metrics.getLeading
+    new Rectangle(rect.getWidth.toInt, height.toInt)
   }
 
   override def getStringSize(str: String): Rectangle2D = getStringSize(str, g2d.getFont)
@@ -304,30 +307,30 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
                           posY: Int,
                           str: String,
                           font: Font,
-                          color: Color = Color.BLACK,
-                          halign: Int = SwingConstants.LEFT,
-                          valign: Int = SwingConstants.BOTTOM): Unit = {
+                          color: Color,
+                          halign: Int,
+                          valign: Int): Unit = {
 
     val bounds: Rectangle2D = getStringSize(str, font)
     val w: Double = bounds.getWidth
     val h: Double = bounds.getHeight
 
-    var x: Int = posX
-    var y: Int = posY
+    var x: Double = posX
+    var y: Double = posY
 
     if (halign == SwingConstants.CENTER) {
-      x -= w/2
+      x -= w / 2.0
     } else if (halign == SwingConstants.RIGHT) {
       x -= w
     }
 
     if (valign == SwingConstants.CENTER) {
-      y += h/2
+      y += h / 2.0
     } else if (valign == SwingConstants.TOP) {
       y += h
     }
 
-    drawString(x, y, str, font, color)
+    drawString(math.round(x).toInt, math.round(y).toInt, str, font, color)
   }
 
   override def drawString(posX: Int,
@@ -375,8 +378,30 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
       val w: Double = bounds.getWidth
       val h: Double = bounds.getHeight
 
+      var cx: Double = posX
+      var cy: Double = posY
+
+      if (halign == SwingConstants.LEFT) {
+        cx += w / 2.0
+      } else if (halign == SwingConstants.RIGHT) {
+        cx -= w / 2.0
+      }
+
+      if (valign == SwingConstants.TOP) {
+        cy += h / 2.0
+      } else if (valign == SwingConstants.BOTTOM) {
+        cy -= h / 2.0
+      }
+
       val font2: Font = new Font(fontFamily, fontStyle, fontSize+shadowThickness)
-      drawString(math.round(posX + w/2 + shadowX).toInt, math.round(posY + h/2 + shadowY).toInt, str, font2, shadowColor, SwingConstants.CENTER, SwingConstants.CENTER)
+      drawString(
+        math.round(cx + shadowX).toInt,
+        math.round(cy + shadowY).toInt,
+        str,
+        font2,
+        shadowColor,
+        SwingConstants.CENTER,
+        SwingConstants.CENTER)
     }
 
     drawString(posX, posY, str, font, color, halign, valign)
