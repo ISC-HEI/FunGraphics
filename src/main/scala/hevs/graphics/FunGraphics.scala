@@ -8,9 +8,10 @@ import hevs.graphics.utils.RepeatingReleasedEventsFixer
 import javax.imageio.ImageIO
 import java.awt._
 import java.awt.event._
-import java.awt.font.TextLayout
-import java.awt.geom.AffineTransform
+import java.awt.font.{LineMetrics, TextLayout}
+import java.awt.geom.{AffineTransform, Rectangle2D}
 import java.io._
+import javax.swing.SwingConstants
 
 /**
  * Factory for [[hevs.graphics.FunGraphics]].
@@ -282,14 +283,16 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.fillOval(posX, posY, width, height)
   }
 
-  override def drawString(posX: Int, posY: Int, str: String): Unit = {
-    g2d.drawString(str, posX, posY)
+  override def getStringSize(str: String, font: Font): Rectangle2D = {
+    font.getStringBounds(str, g2d.getFontRenderContext)
   }
 
-  override def drawString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
+  override def getStringSize(str: String): Rectangle2D = getStringSize(str, g2d.getFont)
+
+  override def drawString(posX: Int, posY: Int, str: String, font: Font, color: Color): Unit = {
     val oldFont = g2d.getFont
     val oldColor = g2d.getColor
-    val font = new Font("SansSerif", Font.PLAIN, size)
+
     g2d.setFont(font)
     g2d.setColor(color)
     g2d.drawString(str, posX, posY)
@@ -297,18 +300,86 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.setColor(oldColor)
   }
 
+  override def drawString(posX: Int,
+                          posY: Int,
+                          str: String,
+                          font: Font,
+                          color: Color = Color.BLACK,
+                          halign: Int = SwingConstants.LEFT,
+                          valign: Int = SwingConstants.BOTTOM): Unit = {
+
+    val bounds: Rectangle2D = getStringSize(str, font)
+    val w: Double = bounds.getWidth
+    val h: Double = bounds.getHeight
+
+    var x: Int = posX
+    var y: Int = posY
+
+    if (halign == SwingConstants.CENTER) {
+      x -= w/2
+    } else if (halign == SwingConstants.RIGHT) {
+      x -= w
+    }
+
+    if (valign == SwingConstants.CENTER) {
+      y += h/2
+    } else if (valign == SwingConstants.TOP) {
+      y += h
+    }
+
+    drawString(x, y, str, font, color)
+  }
+
+  override def drawString(posX: Int,
+                          posY: Int,
+                          str: String,
+                          fontFamily: String = "SansSerif",
+                          fontStyle: Int = Font.PLAIN,
+                          fontSize: Int = 20,
+                          color: Color = Color.BLACK,
+                          halign: Int = SwingConstants.LEFT,
+                          valign: Int = SwingConstants.BOTTOM): Unit = {
+
+    val font = new Font(fontFamily, fontStyle, fontSize)
+    drawString(posX, posY, str, font, color, halign, valign)
+  }
+
+  override def drawString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
+    drawString(posX, posY, str, fontSize = size, color = color)
+  }
+
   override def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
-    val g2 = g2d
-    val oldFont = g2d.getFont
-    val oldColor = g2d.getColor
-    val font = new Font("Georgia", Font.BOLD, size)
-    val textLayout = new TextLayout(str, font, g2.getFontRenderContext)
-    g2.setColor(Color.GRAY)
-    textLayout.draw(g2, (posX + 2).toFloat, (posY + 2).toFloat)
-    g2.setColor(color)
-    textLayout.draw(g2, posX.toFloat, posY.toFloat)
-    g2.setFont(oldFont)
-    g2.setColor(oldColor)
+    val font: Font = new Font("Georgia", Font.BOLD, size)
+    drawString(posX+2, posY+2, str, font, color = Color.GRAY)
+    drawString(posX, posY, str, fontSize = size, color = color)
+  }
+
+  override def drawFancyString(posX: Int,
+                               posY: Int,
+                               str: String,
+                               fontFamily: String = "Georgia",
+                               fontStyle: Int = Font.BOLD,
+                               fontSize: Int = 20,
+                               color: Color = Color.BLACK,
+                               halign: Int = SwingConstants.LEFT,
+                               valign: Int = SwingConstants.BOTTOM,
+                               shadowX: Int = 0,
+                               shadowY: Int = 0,
+                               shadowColor: Color = Color.GRAY,
+                               shadowThickness: Int = 0): Unit = {
+
+    val font: Font = new Font(fontFamily, fontStyle, fontSize)
+
+    if (shadowThickness > 0) {
+      val bounds: Rectangle2D = getStringSize(str, font)
+      val w: Double = bounds.getWidth
+      val h: Double = bounds.getHeight
+
+      val font2: Font = new Font(fontFamily, fontStyle, fontSize+shadowThickness)
+      drawString(math.round(posX + w/2 + shadowX).toInt, math.round(posY + h/2 + shadowY).toInt, str, font2, shadowColor, SwingConstants.CENTER, SwingConstants.CENTER)
+    }
+
+    drawString(posX, posY, str, font, color, halign, valign)
   }
 
   override def drawPicture(posX: Int, posY: Int, bitmap: GraphicsBitmap): Unit = {
