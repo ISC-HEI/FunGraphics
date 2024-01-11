@@ -409,4 +409,10 @@ trait Graphics {
    * @return the frame height
    */
   def getFrameHeight(): Int
+
+  /**
+   * Returns a list of available font names on the device
+   * @return the list of available font names
+   */
+  def getAvailableFonts(): Array[String]
 }

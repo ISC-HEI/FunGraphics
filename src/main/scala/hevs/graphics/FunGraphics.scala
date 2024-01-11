@@ -453,6 +453,8 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
   override def getFrameWidth(): Int = fWidth
   override def getFrameHeight(): Int = fHeight
 
+  override def getAvailableFonts(): Array[String] = GraphicsEnvironment.getLocalGraphicsEnvironment.getAvailableFontFamilyNames
+
   /**
    * A sample game loop using explicit synchronization (if display flickers)
    */
