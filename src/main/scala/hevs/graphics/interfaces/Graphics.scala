@@ -2,9 +2,9 @@ package hevs.graphics.interfaces
 
 import hevs.graphics.FunGraphics
 import hevs.graphics.utils.GraphicsBitmap
-import java.awt.Color
-import java.awt.Polygon
-import java.awt.Rectangle
+
+import java.awt.geom.Rectangle2D
+import java.awt.{Color, Font, Polygon, Rectangle}
 
 
 /**
@@ -182,6 +182,71 @@ trait Graphics {
   def drawFilledOval(posX: Int, posY: Int, width: Int, height: Int): Unit
 
   /**
+   * Computes the size necessary to render a string with the given font
+   * @param str
+   * the string
+   * @param font
+   * the font
+   * @return the bounding box of the rendered string
+   */
+  def getStringSize(str: String, font: Font): Rectangle2D
+
+
+  /**
+   * Computes the size necessary to render a string with the current font
+   * @param str
+   * the string
+   * @return the bounding box of the rendered string
+   */
+  def getStringSize(str: String): Rectangle2D
+
+  /**
+   * Draws a string at a given location with the given font and color. Note that the boundaries are not
+   * checked and text may be painted outside the window
+   * @param posX
+   * X position of string
+   * @param posY
+   * Y position of string
+   * @param str
+   * the string to write
+   * @param font
+   * the font
+   * @param color
+   * the text color
+   */
+  def drawString(posX: Int,
+                 posY: Int,
+                 str: String,
+                 font: Font,
+                 color: Color): Unit
+
+  /**
+   * Draws a string at a given location with the given font, color and alignments. Note that the boundaries are not
+   * checked and text may be painted outside the window
+   * @param posX
+   * X position of string
+   * @param posY
+   * Y position of string
+   * @param str
+   * the string to write
+   * @param font
+   * the font
+   * @param color
+   * the text color
+   * @param halign
+   * the horizontal alignment (see {@link javax.swing.SwingConstants})
+   * @param valign
+   * the vertical alignment (see {@link javax.swing.SwingConstants})
+   */
+  def drawString(posX: Int,
+                 posY: Int,
+                 str: String,
+                 font: Font,
+                 color: Color,
+                 halign: Int,
+                 valign: Int): Unit
+
+  /**
    * Draws a string at a given location. Note that the boundaries are not
    * checked and text may be painted outside the window
    *
@@ -191,8 +256,28 @@ trait Graphics {
    * Y position of string
    * @param str
    * the string to write
+   * @param fontFamily
+   * the font family
+   * @param fontStyle
+   * the font style (plain, bold, italics, ...)
+   * @param fontSize
+   * the font size
+   * @param color
+   * the text color
+   * @param halign
+   * the horizontal alignment (see {@link javax.swing.SwingConstants})
+   * @param valign
+   * the vertical alignment (see {@link javax.swing.SwingConstants})
    */
-  def drawString(posX: Int, posY: Int, str: String): Unit
+  def drawString(posX: Int,
+                 posY: Int,
+                 str: String,
+                 fontFamily: String,
+                 fontStyle: Int,
+                 fontSize: Int,
+                 color: Color,
+                 halign: Int,
+                 valign: Int): Unit
 
   /**
    * Write the given string at <code>posX, posY</code>
@@ -220,6 +305,41 @@ trait Graphics {
    * @param size
    */
   def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit
+
+  /**
+   * Draws a text with a shadow or outline
+   * @param posX
+   * X position of the string
+   * @param posY
+   * Y position of the string
+   * @param str
+   * the string to draw
+   * @param fontFamily
+   * the font family
+   * @param fontStyle
+   * the font style (plain, bold, italics, ...)
+   * @param fontSize
+   * the font size
+   * @param color
+   * the text color
+   * @param halign
+   * the horizontal alignment (see {@link javax.swing.SwingConstants})
+   * @param valign
+   * the vertical alignment (see {@link javax.swing.SwingConstants})
+   * @param shadowX
+   * the shadow's X offset
+   * @param shadowY
+   * the shadow's Y offset
+   * @param shadowColor
+   * the shadow color
+   * @param shadowThickness
+   * the shadow thickness
+   * @param outlineColor
+   * the outline color
+   * @param outlineThickness
+   * the outline thickness
+   */
+  def drawFancyString(posX: Int, posY: Int, str: String, fontFamily: String, fontStyle: Int, fontSize: Int, color: Color, halign: Int, valign: Int, shadowX: Int, shadowY: Int, shadowColor: Color, shadowThickness: Int, outlineColor: Color, outlineThickness: Int): Unit
 
   /**
    * Draw a centered picture from a file (gif, jpg, png) to <code>(posX, posY)</code>
@@ -289,4 +409,10 @@ trait Graphics {
    * @return the frame height
    */
   def getFrameHeight(): Int
+
+  /**
+   * Returns a list of available font names on the device
+   * @return the list of available font names
+   */
+  def getAvailableFonts(): Array[String]
 }
