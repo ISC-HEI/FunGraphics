@@ -1,7 +1,6 @@
 plugins {
 	id 'java-library'
-  id 'scala'
-	id "org.jetbrains.kotlin.jvm" version "1.6.20"
+  	id 'scala'
 	id "com.palantir.git-version" version "0.14.0"
 }
 
@@ -10,12 +9,6 @@ def main = 'hevs.graphics.FunGraphics' // <- Main class name
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(11)
-	}
-}
-
-kotlin {
-	jvmToolchain {
 		languageVersion = JavaLanguageVersion.of(11)
 	}
 }
@@ -32,9 +25,8 @@ repositories {
 
 dependencies {
 	implementation 'org.scala-lang:scala-library:2.13.9'
-  testImplementation 'org.scalatest:scalatest_2.13:3.2.0'
-  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-	testImplementation 'org.jetbrains.kotlin:kotlin-test'
+  	testImplementation 'org.scalatest:scalatest_2.13:3.2.0'
+  	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 	testImplementation 'org.assertj:assertj-core:3.9.2'
 	testImplementation 'org.assertj:assertj-swing-junit:3.9.2'
@@ -47,7 +39,7 @@ task versionGen {
 	outputs.upToDateWhen { false }
 	outputs.file(versionFile)
 	doLast {
-		new File(versionFile).text = """${gitVersion()}
+	new File(versionFile).text = """${gitVersion()}
 """
 	}
 }
@@ -55,7 +47,7 @@ task versionGen {
 tasks.named('jar') {
 	dependsOn versionGen
 	dependsOn test
-  dependsOn scaladoc
+  	dependsOn scaladoc
 	manifest {
 		attributes('Implementation-Title': name,
 				'Implementation-Version': rootProject.version,
@@ -64,18 +56,15 @@ tasks.named('jar') {
 	archiveBaseName.set(rootProject.name)
 	archiveVersion.set(rootProject.version)
 
-	from('src/main/kotlin') {
-		include '**/*.kt'
-	}
-  from('src/main/scala') {
+  	from('src/main/scala') {
 		include '**/*.scala'
-    include '**/*.java'
+    	include '**/*.java'
 	}
-  from(scaladoc.outputs.files) {
-    include '**'
-    exclude 'hevs/utils/ScalaDocSetup.html'
-    exclude 'index.html'
-  }
+  	from(scaladoc.outputs.files) {
+		include '**'
+		exclude 'hevs/utils/ScalaDocSetup.html'
+		exclude 'index.html'
+  	}
 
 	from("$genDir") {
 		rename {
