@@ -364,6 +364,8 @@ trait Graphics {
    * Y position of the image
    * @param angle
    * The rotation angle of the image to be drawn
+   * @param scale
+   * The scale factor of the image to be drawn
    * @param imageName
    * path of the image file
    */
@@ -378,6 +380,8 @@ trait Graphics {
    * Y position of the image
    * @param angle
    * The rotation angle of the image to be drawn
+   * @param scale
+   * The scale factor of the image to be drawn
    * @param bitmap
    * A bitmap
    */
