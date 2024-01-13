@@ -1,8 +1,6 @@
 package hevs.utils
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
-
+import java.io.{BufferedReader, InputStreamReader}
 
 /**
  * A class with functions to manipulate text strings. Based on an old

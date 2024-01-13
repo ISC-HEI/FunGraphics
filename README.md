@@ -40,6 +40,6 @@ Here is an example : `1.5.7-3-g2aabbbf.dirty`
 ## How to release (and have a nice version number)
 
 1. `git commit`
-1. `git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"`
-1. `git push origin MAJOR.MINOR.SUB`
-2. This commits everyhing and tags it adequately. When this has been done, you can then draft a new release and upload the corresponding `jar` file from above in Github releases. Creating a tag triggers the documentation update. Voilà, you're all set.
+2. `git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"`
+3. `git push origin MAJOR.MINOR.SUB`
+4. This commits everyhing and tags it adequately. When this has been done, you can then draft a new release and upload the corresponding `jar` file from above in GitHub releases. Creating a tag triggers the documentation update. Voilà, you're all set.

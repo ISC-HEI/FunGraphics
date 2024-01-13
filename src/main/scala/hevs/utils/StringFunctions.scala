@@ -1,5 +1,8 @@
 package hevs.utils
 
+/**
+ * Utility class with useful methods for string manipulation
+ */
 object StringFunctions {
   /**
    * Get the number of characters in a [[String]]

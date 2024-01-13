@@ -1,16 +1,14 @@
 package hevs.graphics
 
-import hevs.graphics.interfaces.DualLayerGraphics
-import hevs.graphics.interfaces.Graphics
-import hevs.graphics.utils.GraphicsBitmap
-import hevs.graphics.utils.RepeatingReleasedEventsFixer
+import hevs.graphics.interfaces.{DualLayerGraphics, Graphics}
+import hevs.graphics.utils.{GraphicsBitmap, RepeatingReleasedEventsFixer}
 
-import javax.imageio.ImageIO
 import java.awt._
 import java.awt.event._
-import java.awt.font.{LineMetrics, TextLayout}
+import java.awt.font.LineMetrics
 import java.awt.geom.{AffineTransform, Rectangle2D}
 import java.io._
+import javax.imageio.ImageIO
 import javax.swing.SwingConstants
 
 /**

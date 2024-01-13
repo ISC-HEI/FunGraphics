@@ -1,10 +1,7 @@
 package hevs.graphics
 
-import java.awt.BasicStroke
-import java.awt.Color
-import java.awt.Point
+import java.awt.{BasicStroke, Color, Point}
 import java.awt.event.MouseMotionListener
-
 
 /**
  * Graphics class that emulates the tortoise in the Logo programming language

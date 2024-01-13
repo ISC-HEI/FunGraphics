@@ -2,7 +2,6 @@ package hevs.utils
 
 import java.io.{BufferedReader, InputStreamReader}
 
-
 /**
  * The class [[Input]] is here to enter data with the keyboard.<br>
  * The types below are supported by the [[Input]] class. <br>

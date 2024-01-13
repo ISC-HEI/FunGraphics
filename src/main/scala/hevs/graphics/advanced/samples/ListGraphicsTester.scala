@@ -1,9 +1,9 @@
 package hevs.graphics.advanced.samples
 
 import hevs.graphics.advanced.ListGraphics
+
 import java.awt.Color
 import java.util.Random
-
 
 /**
  * Performance test application for [[ListGraphics]]

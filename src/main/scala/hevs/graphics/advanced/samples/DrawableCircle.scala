@@ -1,7 +1,7 @@
 package hevs.graphics.advanced.samples
 
-import hevs.graphics.advanced.Drawable
-import hevs.graphics.advanced.ListGraphics
+import hevs.graphics.advanced.{Drawable, ListGraphics}
+
 import java.awt.Color
 
 /**

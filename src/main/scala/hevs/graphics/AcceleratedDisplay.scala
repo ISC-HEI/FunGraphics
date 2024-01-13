@@ -1,21 +1,10 @@
 package hevs.graphics
 
 import hevs.graphics.utils.GraphicTimer
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.DisplayMode
-import java.awt.Graphics2D
-import java.awt.GraphicsConfiguration
-import java.awt.GraphicsDevice
-import java.awt.GraphicsEnvironment
-import java.awt.RenderingHints
-import java.awt.Toolkit
-import java.awt.Transparency
-import java.awt.image.BufferStrategy
-import java.awt.image.BufferedImage
-import javax.swing.JFrame
-import javax.swing.SwingWorker
-import javax.swing.UIManager
+
+import java.awt._
+import java.awt.image.{BufferStrategy, BufferedImage}
+import javax.swing.{JFrame, SwingWorker, UIManager}
 
 
 object AcceleratedDisplay {

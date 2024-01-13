@@ -3,13 +3,11 @@ package hevs.graphics.advanced
 import hevs.graphics.FunGraphics
 
 import java.awt.Color
-import java.awt.event.KeyListener
-import java.awt.event.MouseListener
-import java.util.{Collections, List}
+import java.awt.event.{KeyListener, MouseListener}
 import java.util
+import java.util.Collections
 import java.util.concurrent.CopyOnWriteArrayList
 import javax.swing.JFrame
-
 
 /**
  * Extension of [[hevs.graphics.FunGraphics]] that manages a list of [[hevs.graphics.advanced.Drawable]]

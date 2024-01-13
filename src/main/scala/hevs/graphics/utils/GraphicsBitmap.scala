@@ -1,9 +1,7 @@
 package hevs.graphics.utils
 
-import java.awt.GraphicsConfiguration
-import java.awt.GraphicsEnvironment
+import java.awt.{GraphicsConfiguration, GraphicsEnvironment}
 import java.awt.image.BufferedImage
-import java.net.URL
 import javax.imageio.ImageIO
 
 

@@ -1,12 +1,9 @@
 package hevs.graphics
 
-import java.awt.Color
-import java.awt.Graphics
-import java.awt.Toolkit
 import java.awt.image.BufferedImage
+import java.awt.{Color, Graphics, Toolkit}
 import javax.imageio.ImageIO
 import javax.swing.JFrame
-
 
 /**
  * [[ImageGraphics]] helpers.
