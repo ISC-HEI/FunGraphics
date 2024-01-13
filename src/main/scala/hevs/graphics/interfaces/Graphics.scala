@@ -162,10 +162,10 @@ trait Graphics {
    * X top-left position of the circle
    * @param posY
    * Y top-left position of the circle
-   * @param radius
-   * Radius of the drawn circle
+   * @param diameter
+   * Diameter of the drawn circle
    */
-  def drawFilledCircle(posX: Int, posY: Int, radius: Int): Unit
+  def drawFilledCircle(posX: Int, posY: Int, diameter: Int): Unit
 
   /**
    * Draws an oval starting from <code>(Top left X, Top left Y)</code>

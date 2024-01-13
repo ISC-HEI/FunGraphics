@@ -273,8 +273,8 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.drawOval(posX, posY, f, f)
   }
 
-  override def drawFilledCircle(posX: Int, posY: Int, radius: Int): Unit = {
-    g2d.fillOval(posX, posY, radius, radius)
+  override def drawFilledCircle(posX: Int, posY: Int, diameter: Int): Unit = {
+    g2d.fillOval(posX, posY, diameter, diameter)
   }
 
   override def drawFilledOval(posX: Int, posY: Int, width: Int, height: Int): Unit = {
