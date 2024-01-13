@@ -14,7 +14,7 @@ import java.io._
 import javax.swing.SwingConstants
 
 /**
- * Factory for [[hevs.graphics.FunGraphics]].
+ * Factory for [[FunGraphics]].
  */
 object FunGraphics {
   var major = 0
@@ -455,13 +455,14 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
 
   override def getAvailableFonts(): Array[String] = GraphicsEnvironment.getLocalGraphicsEnvironment.getAvailableFontFamilyNames
 
-  /**
-   * A sample game loop using explicit synchronization (if display flickers)
-   */
+
   private[graphics] var pressedUp = false
   private[graphics] var pressedDown = false
   private[graphics] var size = 1
 
+  /**
+   * A sample game loop using explicit synchronization (if display flickers)
+   */
   private[graphics] def gameloopSample(): Unit = {
     var i = 1
     var direction = 1

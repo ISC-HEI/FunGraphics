@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionListener
  *
  * The turtle starts at the center of the window, looking up with a black color and pen down
  *
- * Basic port implementation by Pierre Roduit, rewritten for use with {@link FunGraphics}
+ * Basic port implementation by Pierre Roduit, rewritten for use with [[FunGraphics]]
  * by Pierre-André Mudry.
  *
  * @see <a href="http://en.wikipedia.org/wiki/Turtle_graphics">Wikipedia
@@ -41,6 +41,11 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
     this(width, height, null)
   }
 
+  /**
+   * Rounds a Double value and converts it to Int
+   * @param a the value to round
+   * @return the rounded value
+   */
   private def round(a: Double) = a.round.toInt
 
   /**
@@ -55,7 +60,7 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
   /**
    * Change the color of drawing
    *
-   * @param color
+   * @param color the new color
    */
   def changeColor(color: Color): Unit = {
     setColor(color)
@@ -99,27 +104,29 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
   }
 
   /**
+   * Gets the turtle's current position
    * @return The location of the turtle
    */
-  def getPosition() = new Point(round(x), round(y))
+  def getPosition(): Point = new Point(round(x), round(y))
 
   /**
    * Sets the width of the pen
    *
-   * @param w
+   * @param w the new width
    */
   def setWidth(w: Float): Unit = {
     g2d.setStroke(new BasicStroke(w))
   }
 
   /**
+   * Gets the turtle's current angle
    * @return The current turtle angle (in degrees)
    *         Angle 0 is east (right). A positive angle is clockwise.
    */
   def getTurtleAngle(): Double = this.angle * 180.0 / Math.PI
 
   /**
-   * Turn the direction of writing with the specified angle
+   * Turn the direction of writing with by specified angle
    * A positive angle is clockwise.
    *
    * @param angle specified angle in degrees
@@ -140,7 +147,7 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
   }
 
   /**
-   * Turn the direction of writing with the specified angle.
+   * Turn the direction of writing by the specified angle.
    * A positive angle is clockwise.
    *
    * @param angle
@@ -169,6 +176,10 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
    */
   def getTurtleAngleRad(): Double = this.angle
 
+  /**
+   * Adds a [[MouseMotionListener]] to the window to react on mouse movements
+   * @param mouseMotionListener the [[MouseMotionListener]]
+   */
   def setMouseMotionManager(mouseMotionListener: MouseMotionListener): Unit = {
     this.mainFrame.addMouseMotionListener(mouseMotionListener)
   }
