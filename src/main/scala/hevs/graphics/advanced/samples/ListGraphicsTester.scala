@@ -6,12 +6,16 @@ import java.util.Random
 
 
 /**
- * Performance test application for {@link ListGraphics}
+ * Performance test application for [[ListGraphics]]
  *
  * @author Pierre-Andre Mudry
  * @version 1.0
  */
 object ListGraphicsTester {
+  /**
+   * Simple tests with [[ListGraphics]]
+   * @param args unused
+   */
   def main(args: Array[String]): Unit = {
     new ListGraphicsTester
   }

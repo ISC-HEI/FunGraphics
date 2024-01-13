@@ -8,10 +8,7 @@ import java.util.Random
 
 
 /**
- * Performance testers for {@link ListGraphics}
- *
- * @author Pierre-Andre Mudry
- * @version 1.0
+ * A simple class representing a drawable image
  */
 class ImageBackground extends Drawable {
   private[samples] val bmp = new GraphicsBitmap("/res/img/mandrill.jpg")
@@ -24,7 +21,17 @@ class ImageBackground extends Drawable {
   }
 }
 
+/**
+ * Performance testers for [[ListGraphics]]
+ *
+ * @author Pierre-Andre Mudry
+ * @version 1.0
+ */
 object ComplexTesterWithImage {
+  /**
+   * Complex tests with [[ListGraphics]]
+   * @param args unused
+   */
   def main(args: Array[String]): Unit = {
     new ComplexTesterWithImage
   }
