@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 
 /**
  * A class with functions to manipulate text strings. Based on an old
- * <code>TextTools</code> version that hid all the strings in static variables
+ * `TextTools` version that hid all the strings in static variables
  * inside the class. This has all been removed and now everything is explicit
  * and exposed.
  *
@@ -27,8 +27,10 @@ object TextTools {
   }
 
   /**
-   * Get an integer value from the console. Can read octal and hexadecimal
-   * formats as well
+   * Get an integer value from the console.
+   * Can read octal and hexadecimal formats as well (prefixed by `0`, respectively `0x`/`0X`)
+   * @return the typed [[Int]]
+   * @see [[Integer]]
    */
   def readInt(): Int = {
     System.out.print("Enter an integer value in decimal, octal or hexadecimal format : ")
@@ -46,6 +48,8 @@ object TextTools {
 
   /**
    * Get a double value from the console.
+   * @return they typed [[Double]]
+   * @see [[java.lang.Double]]
    */
   def readDouble(): Double = {
     System.out.print("Enter a double value : ")
@@ -58,7 +62,9 @@ object TextTools {
   }
 
   /**
-   * Read a boolean value (true, false) from the console.
+   * Get a boolean value (`true`, `false`) from the console.
+   * @return `true` if the typed value is true, `false` otherwise
+   * @see [[java.lang.Boolean]]
    */
   def readBoolean(): Boolean = {
     System.out.print("Enter a boolean value : ")
@@ -71,7 +77,9 @@ object TextTools {
   }
 
   /**
-   * Get a char from the console.
+   * Get a [[Char]] from the console.
+   * @return the typed [[Char]]
+   * @see [[Character]]
    */
   def readChar(): Char = {
     System.out.print("Enter a character : ")
@@ -84,10 +92,10 @@ object TextTools {
   }
 
   /**
-   * Reverse the given string <code>input</code> ...
+   * Reverse the given string `input`
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to reverse
+   * @return the reversed string
    */
   def reverse(input: String): String = {
     var output = new String("")
@@ -98,26 +106,26 @@ object TextTools {
   }
 
   /**
-   * Converts all of the characters in this String to upper case.
+   * Converts all of the characters in this [[String]] to upper case.
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to convert
+   * @return the converted string
    */
   def toUpperCase(input: String): String = input.toUpperCase
 
   /**
-   * Converts all of the characters in this String to lower case.
+   * Converts all of the characters in this [[String]] to lower case.
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to convert
+   * @return the converted string
    */
   def toLowerCase(input: String): String = input.toLowerCase
 
   /**
-   * Converts the first character of this String to upper case.
+   * Converts the first character of this [[String]] to upper case.
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to convert
+   * @return the converted string
    */
   def capitalize(input: String): String = {
     var output = String.valueOf(input.charAt(0)).toUpperCase
@@ -128,23 +136,26 @@ object TextTools {
   }
 
   /**
-   * Inverts a complete String
+   * Inverts a complete [[String]] (left to right)
    *
-   * @param input
+   * @param input the string to invert
    * @return the inverted String
+   * @see [[reverse]]
    */
   def invert(input: String): String = invert(input, input.length)
 
   /**
-   * Inverts the characters of the input string by group of
-   * <code>number</code> characters
+   * Inverts the characters of the input string by groups of
+   * `number` characters
    *
-   * @param input
-   * as string : the given string
-   * @param number
-   * as int : the number of charaters to invert
+   * Example :
+   *  - invert("Hello World !", 4) returns "lleHoW o dlr!"
+   *
+   * @param input the string to invert
+   * @param number the size of each group
+   * @return the inverted string
    */
-  private def invert(input: String, number: Int) = {
+  private def invert(input: String, number: Int): String = {
     var i = 0
     var output = new String("")
     if (input.length >= number) {
@@ -169,10 +180,10 @@ object TextTools {
   }
 
   /**
-   * Hide any vowel in a string
+   * Replaces every vowel in the given string with ' '
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to obfuscate
+   * @return the obfuscated string
    */
   def deleteVowels(input: String): String = {
     var ASCII = 0
@@ -186,10 +197,10 @@ object TextTools {
   }
 
   /**
-   * Deletes each consonant in a string
+   * Replaces every consonant in the given string with ' '
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to obfuscate
+   * @return the obfuscated string
    */
   def deleteConsonants(input: String): String = {
     var ASCII = 0
@@ -203,10 +214,10 @@ object TextTools {
   }
 
   /**
-   * Encrypts a string
+   * Encrypts a string using a variant of the Caesar-5 cipher (using all values in [0,255])
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to encrypt
+   * @return the encrypted string
    */
   def encrypt(input: String): String = {
     var output = new String("")
@@ -217,10 +228,10 @@ object TextTools {
   }
 
   /**
-   * Decrypts an encrypted string
+   * Decrypts a string using a variant of the Caesar-5 cipher (using all values in [0,255])
    *
-   * @param input
-   * as string : the given string
+   * @param input the string to decrypt
+   * @return the decrypted string
    */
   def decrypt(input: String): String = {
     var output = new String("")

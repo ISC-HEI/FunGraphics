@@ -5,23 +5,21 @@ import java.util
 import java.util.regex.Pattern
 import java.util.zip.{ZipEntry, ZipException, ZipFile}
 
-/*
- * source : https://stackoverflow.com/a/3923182/2069348
- * licence : CC BY-SA 4.0
- * author : jmj (https://stackoverflow.com/users/260990/jmj)
- */
-
-
 /**
- * list resources available from the classpath @ *
+ * List resources available from the classpath
+ *
+ * Licence : CC BY-SA 4.0
+ * @author <a href='https://stackoverflow.com/users/260990/jmj'>jmj</a>
+ * @see [[https://stackoverflow.com/a/3923182/2069348]]
  */
 object ResourceList {
   /**
-   * for all elements of java.class.path get a Collection of resources Pattern
-   * pattern = Pattern.compile(".*"); gets all resources
+   * Gets all resources matching the specified pattern
+   * in the classpath
+   * To get all resources, pass the pattern ".*":
+   * {{{Pattern pattern = Pattern.compile(".*")}}}
    *
-   * @param pattern
-   * the pattern to match
+   * @param pattern the pattern to match
    * @return the resources in the order they are found
    */
   def getResources(pattern: Pattern): util.Collection[String] = {
@@ -34,7 +32,14 @@ object ResourceList {
     retval
   }
 
-  private def getResources(element: String, pattern: Pattern) = {
+  /**
+   * Gets all resources matching the specified pattern
+   * in the given path element
+   * @param element the path element (a directory or .jar file)
+   * @param pattern the pattern to match
+   * @return the resources in the order they are found
+   */
+  private def getResources(element: String, pattern: Pattern): util.Collection[String] = {
     val retval = new util.ArrayList[String]
     val file = new File(element)
     if (file.isDirectory) retval.addAll(getResourcesFromDirectory(file, pattern))
@@ -42,7 +47,14 @@ object ResourceList {
     retval
   }
 
-  private def getResourcesFromJarFile(file: File, pattern: Pattern) = {
+  /**
+   * Gets all resources matching the specified pattern
+   * in the given .jar file
+   * @param file the .jar file
+   * @param pattern the pattern to match
+   * @return the resources in the order they are found
+   */
+  private def getResourcesFromJarFile(file: File, pattern: Pattern): util.Collection[String] = {
     val retval = new util.ArrayList[String]
     var zf: ZipFile = null
     try zf = new ZipFile(file)
@@ -69,6 +81,13 @@ object ResourceList {
     retval
   }
 
+  /**
+   * Gets all resources matching the specified pattern
+   * in the given directory
+   * @param directory the directory to search in
+   * @param pattern the pattern to match
+   * @return the resources in the order they are found
+   */
   private def getResourcesFromDirectory(directory: File, pattern: Pattern): util.ArrayList[String] = {
     val retval = new util.ArrayList[String]
     val fileList = directory.listFiles
@@ -87,10 +106,10 @@ object ResourceList {
   }
 
   /**
-   * list the resources that match args[0]
+   * Lists the resources that match `args(0)`
    *
    * @param args
-   * args[0] is the pattern to match, or list all resources if
+   * args(0) is the pattern to match, or list all resources if
    * there are no args
    */
   def main(args: Array[String]): Unit = {

@@ -30,17 +30,21 @@ object DateUtils {
     theDate
   }
 
-  private def nMsec(a: Date, b: Date) = if (b.after(a)) b.getTime - a.getTime
+  /**
+   * Computes the number of milliseconds between two dates
+   * @param a the first date
+   * @param b the second date
+   * @return the number of milliseconds between the two dates
+   */
+  private def nMsec(a: Date, b: Date): Long = if (b.after(a)) b.getTime - a.getTime
   else a.getTime - b.getTime
 
   /**
    * Computes the number of hours between two dates
    *
-   * @param a
-   * The first date
-   * @param b
-   * The second date
-   * @return The number of hours between the two dates
+   * @param a the first date
+   * @param b the second date
+   * @return the number of hours between the two dates
    */
   def nHours(a: Date, b: Date): Int = {
     val n = nMsec(a, b) / msPerHour
@@ -48,20 +52,21 @@ object DateUtils {
   }
 
   /**
-   * Computes the number of day between two dates
+   * Computes the number of days between two dates
    *
-   * @param a
-   * The first date
-   * @param b
-   * The second date
-   * @return The number of days between the two dates
+   * @param a the first date
+   * @param b the second date
+   * @return the number of days between the two dates
    */
   def nDays(a: Date, b: Date): Int = {
     val nDays = nMsec(a, b) / msPerDay
     nDays.toInt
   }
 
-  // Some samples
+  /**
+   * Some sample tests
+   * @param args unused
+   */
   def main(args: Array[String]): Unit = {
     val first = DateUtils.createDate("1/1/2000")
     val second = DateUtils.createDate("1/1/2001")
