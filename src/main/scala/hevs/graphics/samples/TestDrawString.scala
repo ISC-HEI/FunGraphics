@@ -3,11 +3,10 @@ package hevs.graphics.samples
 import hevs.graphics.FunGraphics
 
 import java.awt.{Color, Font}
-import java.awt.geom.Rectangle2D
 import javax.swing.SwingConstants
 
 /**
- * Sample for drawString methods
+ * Sample for `drawString` and `drawFancyString` methods of [[FunGraphics]]
  *
  * @author Louis Heredero
  */

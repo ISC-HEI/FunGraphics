@@ -2,12 +2,10 @@ package hevs.graphics.samples
 
 import hevs.graphics.TurtleGraphics
 
-
 /**
- * Sample for {@link TurtleGraphics} class
+ * Sample for [[TurtleGraphics]] class
  *
  * @author Pierre-André Mudry
- *
  */
 object TestTurtleGraphics extends App {
     val t = new TurtleGraphics(500, 500, "Test of Turtle Graphics")
