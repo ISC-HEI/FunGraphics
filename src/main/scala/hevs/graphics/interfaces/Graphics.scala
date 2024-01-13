@@ -53,7 +53,7 @@ trait Graphics {
    * @param y
    * Y coordinate
    * @param c
-   * Color to use for this pixel (this pixel only, see {@link # setColor ( Color )}
+   * Color to use for this pixel (this pixel only, see [[setColor setColor(Color)]]
    */
   def setPixel(x: Int, y: Int, c: Color): Unit
 
@@ -78,7 +78,7 @@ trait Graphics {
   def setPenWidth(width: Float): Unit
 
   /**
-   * Draw a line from P1 to P2 in the color selected with setColor.
+   * Draw a line from `P1` to `P2` in the color selected with [[setColor]].
    *
    * @param p1x
    * X coordinate of P1
@@ -94,13 +94,13 @@ trait Graphics {
   /**
    * Draw a filled polygon
    *
-   * @param p
-   * @param c
+   * @param p the polygon to draw
+   * @param c the color of the polygon
    */
   def drawFilledPolygon(p: Polygon, c: Color): Unit
 
   /**
-   * Draw an empty rectangle in the color selected with setColor().
+   * Draw an empty rectangle in the color selected with [[setColor]].
    *
    * @param posX
    * X coordinate of the top left corner of the rectangle
@@ -114,7 +114,7 @@ trait Graphics {
   def drawRect(posX: Int, posY: Int, width: Int, height: Int): Unit
 
   /**
-   * Draw a filled rectangle in the color selected with setColor.
+   * Draw a filled rectangle in the color selected with [[setColor]].
    *
    * @param posX
    * X coordinate of the top left corner of the rectangle
@@ -128,7 +128,7 @@ trait Graphics {
   def drawFillRect(posX: Int, posY: Int, width: Int, height: Int): Unit
 
   /**
-   * Draw an empty rectangle in the color selected with setColor
+   * Draw an empty rectangle in the color selected with [[setColor]]
    *
    * @param rect
    * rectangle to draw
@@ -136,7 +136,7 @@ trait Graphics {
   def drawRect(rect: Rectangle): Unit
 
   /**
-   * Draw a filled rectangle in the color selected with setColor.
+   * Draw a filled rectangle in the color selected with [[setColor]].
    *
    * @param rect
    * rectangle to draw
@@ -234,9 +234,11 @@ trait Graphics {
    * @param color
    * the text color
    * @param halign
-   * the horizontal alignment (see {@link javax.swing.SwingConstants})
+   * the horizontal alignment (see [[javax.swing.SwingConstants]])
+   * Valid values: LEFT, CENTER and RIGHT
    * @param valign
-   * the vertical alignment (see {@link javax.swing.SwingConstants})
+   * the vertical alignment (see [[javax.swing.SwingConstants]])
+   * Valid values: TOP, CENTER and BOTTOM
    */
   def drawString(posX: Int,
                  posY: Int,
@@ -259,15 +261,17 @@ trait Graphics {
    * @param fontFamily
    * the font family
    * @param fontStyle
-   * the font style (plain, bold, italics, ...)
+   * the font style ([[Font.PLAIN]], [[Font.BOLD]], [[Font.ITALIC]], ...)
    * @param fontSize
    * the font size
    * @param color
    * the text color
    * @param halign
-   * the horizontal alignment (see {@link javax.swing.SwingConstants})
+   * the horizontal alignment (see [[javax.swing.SwingConstants]])
+   * Valid values: LEFT, CENTER and RIGHT
    * @param valign
-   * the vertical alignment (see {@link javax.swing.SwingConstants})
+   * the vertical alignment (see [[javax.swing.SwingConstants]])
+   * Valid values: TOP, CENTER and BOTTOM
    */
   def drawString(posX: Int,
                  posY: Int,
@@ -280,7 +284,7 @@ trait Graphics {
                  valign: Int): Unit
 
   /**
-   * Write the given string at <code>posX, posY</code>
+   * Write the given string at `(posX, posY)`
    *
    * @param posX
    * Position x of the string
@@ -299,15 +303,20 @@ trait Graphics {
    * Draws a text with a shadow
    *
    * @param posX
+   * X position of the string
    * @param posY
+   * Y position of the string
    * @param str
+   * the string to draw
    * @param color
+   * the text color
    * @param size
+   * the font size
    */
   def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit
 
   /**
-   * Draws a text with a shadow or outline
+   * Draws a text with a shadow and/or outline
    * @param posX
    * X position of the string
    * @param posY
@@ -317,15 +326,17 @@ trait Graphics {
    * @param fontFamily
    * the font family
    * @param fontStyle
-   * the font style (plain, bold, italics, ...)
+   * the font style ([[Font.PLAIN]], [[Font.BOLD]], [[Font.ITALIC]], ...)
    * @param fontSize
    * the font size
    * @param color
    * the text color
    * @param halign
-   * the horizontal alignment (see {@link javax.swing.SwingConstants})
+   * the horizontal alignment (see [[javax.swing.SwingConstants]])
+   * Valid values: LEFT, CENTER and RIGHT
    * @param valign
-   * the vertical alignment (see {@link javax.swing.SwingConstants})
+   * the vertical alignment (see [[javax.swing.SwingConstants]])
+   * Valid values: TOP, CENTER and BOTTOM
    * @param shadowX
    * the shadow's X offset
    * @param shadowY
@@ -342,7 +353,7 @@ trait Graphics {
   def drawFancyString(posX: Int, posY: Int, str: String, fontFamily: String, fontStyle: Int, fontSize: Int, color: Color, halign: Int, valign: Int, shadowX: Int, shadowY: Int, shadowColor: Color, shadowThickness: Int, outlineColor: Color, outlineThickness: Int): Unit
 
   /**
-   * Draw a centered picture from a file (gif, jpg, png) to <code>(posX, posY)</code>
+   * Draw a centered picture from a file (gif, jpg, png) to `(posX, posY)`
    *
    * @param posX
    * X position of the image
@@ -354,7 +365,7 @@ trait Graphics {
   def drawPicture(posX: Int, posY: Int, bitmap: GraphicsBitmap): Unit
 
   /**
-   * Draw a centered picture from a file (gif, jpg, png) to <code>(posX, posY)</code>. Warning,
+   * Draw a centered picture from a file (gif, jpg, png) to `(posX, posY)`. Warning,
    * very slow because the image has to be
    * reloaded
    *
@@ -372,7 +383,7 @@ trait Graphics {
   def drawTransformedPicture(posX: Int, posY: Int, angle: Double, scale: Double, imageName: String): Unit
 
   /**
-   * Draw a centered picture from a file (gif, jpg, png) to <code>(posX, posY)</code>
+   * Draw a centered picture from a file (gif, jpg, png) to `(posX, posY)`
    *
    * @param posX
    * X position of the image
@@ -388,7 +399,7 @@ trait Graphics {
   def drawTransformedPicture(posX: Int, posY: Int, angle: Double, scale: Double, bitmap: GraphicsBitmap): Unit
 
   /**
-   * Draw a mirrored centered picture from a file (gif, jpg, png) to <code>(posX, posY)</code>
+   * Draw a mirrored centered picture from a file (gif, jpg, png) to `(posX, posY)`
    *
    * @param posX
    * X position of the image
