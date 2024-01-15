@@ -29,7 +29,8 @@ results :
 1. `git commit`
 2. `git tag -a MAJOR.MINOR.SUB -m "tag vMAJOR.MINOR.SUB"`
 3. `git push origin MAJOR.MINOR.SUB`
-4. This commits everyhing and tags it adequately. When this has been done, you can then draft a new release and upload the corresponding `jar` file from above in GitHub releases. Creating a tag triggers the documentation update. Voilà, you're all set !
+4. This commits everyhing and tags it adequately.
+5. When this has been done, you can then build the corresponding `jar` file with ```./gradlew build``` for having the correct version number built by Maven. You can then draft a new release and upload the corresponding `jar` file from above in GitHub releases. Creating a tag triggers the documentation update. Voilà, you're all set !
 
 ## Version numbers in Scala
 
