@@ -354,7 +354,7 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
   override def drawFancyString(posX: Int, posY: Int, str: String, color: Color, size: Int): Unit = {
     val font: Font = new Font("Georgia", Font.BOLD, size)
     drawString(posX+2, posY+2, str, font, color = Color.GRAY)
-    drawString(posX, posY, str, fontSize = size, color = color)
+    drawString(posX, posY, str, font, color = color)
   }
 
   override def drawFancyString(posX: Int,
