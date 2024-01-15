@@ -1,22 +1,15 @@
 package hevs.graphics.utils
 
 
-import java.awt.AWTEvent
-import java.awt.Component
-import java.awt.EventQueue
-import java.awt.Toolkit
-import java.awt.event.AWTEventListener
-import java.awt.event.ActionEvent
-import java.awt.event.ActionListener
-import java.awt.event.KeyEvent
+import java.awt.{AWTEvent, Component, EventQueue, Toolkit}
+import java.awt.event.{AWTEventListener, ActionEvent, ActionListener, KeyEvent}
 import java.util
-import java.util.{HashMap, Map}
 import javax.swing.Timer
 
 
-/** *
+/**
  * Fixes the discrepancies between keyboard handling under Windows and linux
- * for repeated keys. Taken from http://tech.stolsvik.com/2010/05/linux-java-repeats-released-keyevents.html
+ * for repeated keys. Taken from [[http://tech.stolsvik.com/2010/05/linux-java-repeats-released-keyevents.html]]
  *
  * @author Pierre-André Mudry
  */
@@ -36,7 +29,12 @@ object RepeatingReleasedEventsFixer {
   class RepostedKeyEvent(@SuppressWarnings(Array("hiding")) source: Component, @SuppressWarnings(Array("hiding")) id: Int, when: Long, modifiers: Int, keyCode: Int, keyChar: Char, keyLocation: Int) extends KeyEvent(source, id, when, modifiers, keyCode, keyChar, keyLocation) with RepeatingReleasedEventsFixer.Reposted {
   }
 
-  private def assertEDT = {
+  /**
+   * Asserts that the current thread is the event dispatching thread
+   * @throws AssertionError the current thread is not the EDT
+   * @return `true` if the current thread is the EDT
+   */
+  private def assertEDT: Boolean = {
     if (!EventQueue.isDispatchThread) throw new AssertionError("Not EDT, but [" + Thread.currentThread + "].")
     true
   }
@@ -45,10 +43,16 @@ object RepeatingReleasedEventsFixer {
 class RepeatingReleasedEventsFixer extends AWTEventListener {
   final private val _map = new util.HashMap[Integer, RepeatingReleasedEventsFixer#ReleasedAction]
 
+  /**
+   * Installs the key event listener
+   */
   def install(): Unit = {
     Toolkit.getDefaultToolkit.addAWTEventListener(this, AWTEvent.KEY_EVENT_MASK)
   }
 
+  /**
+   * Removes the key event listener
+   */
   def remove(): Unit = {
     Toolkit.getDefaultToolkit.removeAWTEventListener(this)
   }
@@ -96,10 +100,13 @@ class RepeatingReleasedEventsFixer extends AWTEventListener {
   }
 
   /**
-   * The ActionListener that posts the RELEASED {@link RepostedKeyEvent} if the {@link Timer} times out (and hence the
+   * The [[ActionListener]] that posts the [[KeyEvent.KEY_RELEASED]] [[RepeatingReleasedEventsFixer.RepostedKeyEvent]] if the [[Timer]] times out (and hence the
    * repeat-action was over).
    */
   private class ReleasedAction private[utils](val _originalKeyEvent: KeyEvent, var _timer: Timer) extends ActionListener {
+    /**
+     * Stops the timer and removes the the key event from the map of repeating actions
+     */
     private[utils] def cancel(): Unit = {
       assert(RepeatingReleasedEventsFixer.assertEDT)
       _timer.stop()

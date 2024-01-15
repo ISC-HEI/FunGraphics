@@ -3,51 +3,69 @@ package hevs.graphics.advanced
 import hevs.graphics.FunGraphics
 
 import java.awt.Color
-import java.awt.event.KeyListener
-import java.awt.event.MouseListener
-import java.util.{Collections, List}
+import java.awt.event.{KeyListener, MouseListener}
 import java.util
+import java.util.Collections
 import java.util.concurrent.CopyOnWriteArrayList
 import javax.swing.JFrame
 
-
 /**
- * Extension of {@link hevs.graphics.FunGraphics} that manages a list of {@link hevs.graphics.advanced.Drawable}
- * objects that are displayed using the {@link # repaint ( )} method.
+ * Extension of [[hevs.graphics.FunGraphics]] that manages a list of [[hevs.graphics.advanced.Drawable]]
+ * objects that are displayed using the [[repaint]] method.
+ *
+ * @param width        Width of the window
+ * @param height       Height of the window
+ * @param title        Title of the window
+ * @param highQuality  Use high quality rendering
  */
 class ListGraphics(override val width: Int, override val height: Int, override val title: String, val highQuality: Boolean) extends FunGraphics(width, height, title, highQuality) {
   private[advanced] var mouseListener:MouseListener = null
   private[advanced] val backgroundColor = Color.white
 
+  /**
+   * Creates a graphic window to draw onto.
+   *
+   * @param width        Width of the display window
+   * @param height       Height of the display window
+   * @param title        Title of the display window
+   */
   def this(width: Int, height: Int, title: String) = {
     this(width, height, title, true)
   }
 
   private val objectsToBeDrawn:util.List[Drawable] = Collections.synchronizedList(new CopyOnWriteArrayList[Drawable])
 
+  /**
+   * Sets the [[MouseListener]] to the window to react on mouse events
+   *
+   * @param mouseListener The [[MouseListener]]
+   */
   def setMouseListener(mouseListener: MouseListener): Unit = {
     this.mouseListener = mouseListener
     mainFrame.addMouseListener(mouseListener)
   }
 
+  /**
+   * Sets the background color used when clearing the window
+   * @param c the new background color
+   */
   def setBackgroundColor(c: Color): Unit = {
     g2d.setBackground(c)
   }
 
   /**
-   * register a new keyboard listener to main window
+   * Register a new keyboard listener to main window
    *
-   * @param listener
+   * @param listener the [[KeyListener]]
    */
   def registerKeyListener(listener: KeyListener): Unit = {
     mainFrame.addKeyListener(listener)
   }
 
   /**
-   * Add a new object that will be drawn
+   * Adds a new object that will be drawn
    *
-   * @param d
-   * The object to draw
+   * @param d the object to draw
    */
   def addDrawableObject(d: Drawable): Unit = {
     objectsToBeDrawn.add(d)
@@ -61,16 +79,18 @@ class ListGraphics(override val width: Int, override val height: Int, override v
   }
 
   /**
-   * Remove an object to the list
+   * Removes an object from the list
    *
-   * @param d
-   * The object to remove
+   * @param d the object to remove
    */
   def removeDrawableObjects(d: Drawable): Unit = {
     objectsToBeDrawn synchronized objectsToBeDrawn.remove(d)
-
   }
 
+  /**
+   * Gets the main [[JFrame]]
+   * @return the [[JFrame]] of the window
+   */
   def getDisplayFrame: JFrame = this.mainFrame
 
   /**

@@ -2,11 +2,11 @@ package hevs.graphics.utils
 
 
 /**
- * Provides a way to get a fixed framerate when calling the
- * <code>sync</code> method in the game loop with the desired
- * frame-rate
+ * Provides a way to get a fixed frame rate when calling the
+ * [[sync]] method in the game loop with the desired
+ * frame rate
  *
- * Adapted from http://www.java-gaming.org/index.php?topic=22933.5
+ * Adapted from [[http://www.java-gaming.org/index.php?topic=22933.5]]
  *
  * @author Pierre-Andre Mudry
  */
@@ -16,11 +16,11 @@ class GraphicTimer() {
 
   /**
    * Periodic call to this method in the main loop
-   * insures a constant frame-rate. This is achieved in the
+   * insures a constant frame rate. This is achieved in the
    * method itself by waiting a variable amount of time to get
-   * a constant frame-rate
+   * a constant frame rate
    *
-   * @param fps The desired frame-rate
+   * @param fps The desired frame rate
    */
   def sync(fps: Int): Unit = {
     Thread.`yield`()

@@ -1,15 +1,12 @@
 package hevs.graphics
 
-import java.awt.Color
-import java.awt.Graphics
-import java.awt.Toolkit
 import java.awt.image.BufferedImage
+import java.awt.{Color, Graphics, Toolkit}
 import javax.imageio.ImageIO
 import javax.swing.JFrame
 
-
 /**
- * [ImageGraphics] helpers.
+ * [[ImageGraphics]] helpers.
  */
 @SerialVersionUID(6832022057915586803L)
 object ImageGraphics {
@@ -35,6 +32,11 @@ object ImageGraphics {
     values
   }
 
+  /**
+   * Converts a color array to a black-or-white array as Int values
+   * @param c The color array
+   * @return The array converted to BW
+   */
   def convertToGrayInt(c: Array[Array[Color]]): Array[Array[Int]] = {
     val w = c.length
     val h = c(0).length
@@ -49,6 +51,10 @@ object ImageGraphics {
     values
   }
 
+  /**
+   * Test of the class
+   * @param args unused
+   */
   def main(args: Array[String]): Unit = {
     val imageUsed = "/images/lena.bmp"
     val org = new ImageGraphics(imageUsed, "Original", 0, 0)
@@ -57,7 +63,7 @@ object ImageGraphics {
 
 /**
  * This class was made to deal with images as multidimensional arrays.
- * Mainly used in the <code>ImageProcessing</code> lab. It expects the images to reside in the <code>src</code> directory
+ * Mainly used in the `ImageProcessing` lab. It expects the images to reside in the `src` directory
  *
  * @author Pierre-André Mudry
  * @version 1.0
@@ -65,7 +71,7 @@ object ImageGraphics {
  * @param backGroundFilePath the path of the file
  * @param windowTitle the title
  * @param xPositionOffset the x offset
- * @param yPositionOffset the y offet
+ * @param yPositionOffset the y offset
  */
 @SerialVersionUID(6832022057915586803L)
 class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val xPositionOffset: Int, val yPositionOffset: Int) extends JFrame {
@@ -110,9 +116,9 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
    * is slow. If required, please call [[java.awt.Component#repaint()]] if needed after
    * you have updated all the pixels you need.
    *
-   * @param x
-   * @param y
-   * @param intensity
+   * @param x X position of the pixel
+   * @param y Y position of the pixel
+   * @param intensity grayscale value of the pixel
    */
   def setPixelBW(x: Int, y: Int, intensity: Int): Unit = {
     if (!((x < 0) || (y < 0) || (x >= w) || (y >= h))) backgroundBitmap.setRGB(x, y, intensity << 16 | intensity << 8 | intensity)
@@ -121,7 +127,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
   /**
    * Sets an array of grayscale pixels (from 0 to 255) and displays them
    *
-   * @param pixels
+   * @param pixels the 2D array of grayscale pixels
    */
   def setPixelsBW(pixels: Array[Array[Int]]): Unit = {
     try {
@@ -140,9 +146,9 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
   }
 
   /**
-   * Sets an array of pixels of Color and displays them
+   * Sets an array of pixels of [[Color]] and displays them
    *
-   * @param pixels
+   * @param pixels the 2D of [[Color]] pixels
    */
   def setPixelsColor(pixels: Array[Array[Color]]): Unit = {
     try {
@@ -165,7 +171,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
    *
    * @param x the x coordinate
    * @param y the y coordinate
-   * @return the pixel
+   * @return the pixel's grayscale value
    */
   def getPixelBW(x: Int, y: Int): Int = if ((x < 0) || (y < 0) || (x >= w) || (y >= h)) 0
   else { // Inside the image. Make the gray conversion and return the value
@@ -177,7 +183,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
    * Gets the array of the pixels (which have been converted to grayscale
    * if required)
    *
-   * @return The arrays of gray pixels
+   * @return the 2D array of grayscale pixels
    */
   def getPixelsBW(): Array[Array[Int]] = {
     val values = Array.ofDim[Int](w, h)
@@ -191,9 +197,9 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
   }
 
   /**
-   * Gets the array of the pixels as Colors (see #Color)
+   * Gets the array of the pixels as [[Color]]s
    *
-   * @return The arrays of pixels
+   * @return the 2D array of [[Color]] pixels
    */
   def getPixelsColor(): Array[Array[Color]] = {
     val values = Array.ofDim[Color](w, h)

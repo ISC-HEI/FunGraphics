@@ -2,28 +2,29 @@ package hevs.utils
 
 import java.io.{BufferedReader, InputStreamReader}
 
-
 /**
- * * The Class Input is here to enter data with the keyboard.<br>
- * The types below are supported by the Input class. <br>
+ * The class [[Input]] is here to enter data with the keyboard.<br>
+ * The types below are supported by the [[Input]] class. <br>
  * <br>
- * - String <br>
- * - Integer (int) <br>
- * - Double (double) - Boolean (boolean) <br>
- * - Character (char) <br>
+ * - [[String]] <br>
+ * - [[Int]] <br>
+ * - [[Double]] <br>
+ * - [[Boolean]] <br>
+ * - [[Char]] <br>
  * <br>
  *
- * @see #readString()
- * @see #readDouble()
- * @see #readBoolean()
- * @see #readChar()
+ * @see [[readString]]
+ * @see [[readInt]]
+ * @see [[readDouble]]
+ * @see [[readBoolean]]
+ * @see [[readChar]]
  */
 object Input {
   /**
-   * * Reads a valid char value from the console.
+   * Reads a valid [[Char]] value from the console.
    *
-   * @return The typed char
-   * @see java.lang.Character
+   * @return The typed [[Char]]
+   * @see [[java.lang.Character]]
    */
   def readChar(): Char = {
     var ok = false
@@ -42,10 +43,10 @@ object Input {
   }
 
   /**
-   * * Reads a String from the console.
+   * Reads a [[String]] from the console.
    *
-   * @return The typed string
-   * @see java.lang.String
+   * @return The typed [[String]]
+   * @see [[java.lang.String]]
    */
   def readString(): String = {
     val stdin = new BufferedReader(new InputStreamReader(System.in))
@@ -57,10 +58,12 @@ object Input {
   }
 
   /**
-   * * Reads a valid integer value from the console.
+   * Reads a valid integer value from the console.
    *
-   * @return The typed value
-   * @see java.lang.Integer
+   * This method also accepts hexadecimal values prefixed by "0x" or "0X"
+   *
+   * @return The typed [[Int]]
+   * @see [[java.lang.Integer]]
    */
   def readInt(): Int = {
     var ok = false
@@ -81,10 +84,10 @@ object Input {
   }
 
   /**
-   * * Reads a valid double value from the console.
+   * Reads a valid [[Double]] value from the console.
    *
-   * @return The typed double value
-   * @see java.lang.Double
+   * @return The typed [[Double]] value
+   * @see [[java.lang.Double]]
    */
   def readDouble(): Double = {
     var ok = false
@@ -103,10 +106,10 @@ object Input {
   }
 
   /**
-   * * Reads a valid boolean value from the console.
+   * Reads a valid [[Boolean]] value from the console.
    *
-   * @return the value true if the typed value is true, false otherwise.
-   * @see java.lang.Boolean
+   * @return the value `true` if the typed value is true, `false` otherwise.
+   * @see [[java.lang.Boolean]]
    */
   def readBoolean(): Boolean = {
     var ok = false

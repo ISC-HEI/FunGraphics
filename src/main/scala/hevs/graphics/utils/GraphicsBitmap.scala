@@ -1,15 +1,13 @@
 package hevs.graphics.utils
 
-import java.awt.GraphicsConfiguration
-import java.awt.GraphicsEnvironment
+import java.awt.{GraphicsConfiguration, GraphicsEnvironment}
 import java.awt.image.BufferedImage
-import java.net.URL
 import javax.imageio.ImageIO
 
 
 /**
- * GraphicsBitmap contains the methods required to create a BufferedImage from a
- * String if the file exists
+ * GraphicsBitmap contains the methods required to create a [[BufferedImage]] from a
+ * [[String]] if the file exists
  *
  * 1.3 : Added acceleration for images using graphics card
  *
@@ -48,8 +46,8 @@ class GraphicsBitmap(val name: String) { // Get optimized image
   def getHeight: Int = HEIGHT
 
   /**
-   * @return the {@link BufferedImage} corresponding to the
-   *         {@link GraphicsBitmap}
+   * @return the [[BufferedImage]] corresponding to the
+   *         [[GraphicsBitmap]]
    */
   def getBufferedImage: BufferedImage = mBitmap
 }

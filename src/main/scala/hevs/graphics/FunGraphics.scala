@@ -1,20 +1,18 @@
 package hevs.graphics
 
-import hevs.graphics.interfaces.DualLayerGraphics
-import hevs.graphics.interfaces.Graphics
-import hevs.graphics.utils.GraphicsBitmap
-import hevs.graphics.utils.RepeatingReleasedEventsFixer
+import hevs.graphics.interfaces.{DualLayerGraphics, Graphics}
+import hevs.graphics.utils.{GraphicsBitmap, RepeatingReleasedEventsFixer}
 
-import javax.imageio.ImageIO
 import java.awt._
 import java.awt.event._
-import java.awt.font.{LineMetrics, TextLayout}
+import java.awt.font.LineMetrics
 import java.awt.geom.{AffineTransform, Rectangle2D}
 import java.io._
+import javax.imageio.ImageIO
 import javax.swing.SwingConstants
 
 /**
- * Factory for [[hevs.graphics.FunGraphics]].
+ * Factory for [[FunGraphics]].
  */
 object FunGraphics {
   var major = 0
@@ -275,8 +273,8 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
     g2d.drawOval(posX, posY, f, f)
   }
 
-  override def drawFilledCircle(posX: Int, posY: Int, radius: Int): Unit = {
-    g2d.fillOval(posX, posY, radius, radius)
+  override def drawFilledCircle(posX: Int, posY: Int, diameter: Int): Unit = {
+    g2d.fillOval(posX, posY, diameter, diameter)
   }
 
   override def drawFilledOval(posX: Int, posY: Int, width: Int, height: Int): Unit = {
@@ -455,13 +453,14 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
 
   override def getAvailableFonts(): Array[String] = GraphicsEnvironment.getLocalGraphicsEnvironment.getAvailableFontFamilyNames
 
-  /**
-   * A sample game loop using explicit synchronization (if display flickers)
-   */
+
   private[graphics] var pressedUp = false
   private[graphics] var pressedDown = false
   private[graphics] var size = 1
 
+  /**
+   * A sample game loop using explicit synchronization (if display flickers)
+   */
   private[graphics] def gameloopSample(): Unit = {
     var i = 1
     var direction = 1

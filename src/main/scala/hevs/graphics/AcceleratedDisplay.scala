@@ -1,21 +1,10 @@
 package hevs.graphics
 
 import hevs.graphics.utils.GraphicTimer
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.DisplayMode
-import java.awt.Graphics2D
-import java.awt.GraphicsConfiguration
-import java.awt.GraphicsDevice
-import java.awt.GraphicsEnvironment
-import java.awt.RenderingHints
-import java.awt.Toolkit
-import java.awt.Transparency
-import java.awt.image.BufferStrategy
-import java.awt.image.BufferedImage
-import javax.swing.JFrame
-import javax.swing.SwingWorker
-import javax.swing.UIManager
+
+import java.awt._
+import java.awt.image.{BufferStrategy, BufferedImage}
+import javax.swing.{JFrame, SwingWorker, UIManager}
 
 
 object AcceleratedDisplay {
@@ -77,11 +66,11 @@ abstract class AcceleratedDisplay {
   }
 
   /**
-   * @see #AcceleratedDisplay(int, int, int, int, String, boolean)
-   * @param width
-   * @param height
-   * @param title
-   * @param high_quality
+   * @see AcceleratedDisplay(Int, Int, Int, Int, String, Boolean)
+   * @param width the width of the window (in pixels)
+   * @param height the height of the window (in pixels)
+   * @param title the title of the window
+   * @param high_quality whether to enable antialiasing or not
    */
   def this(width: Int, height: Int, title: String, high_quality: Boolean) =  {
     this()
@@ -91,14 +80,14 @@ abstract class AcceleratedDisplay {
 
   /**
    *
-   * @param width
-   * @param height
-   * @param xPos x offset position of the window on the screen, -1 for
+   * @param width the width of the window (in pixels)
+   * @param height the height of the window (in pixels)
+   * @param xPos the x offset position of the window on the screen, -1 for
    *             centered
-   * @param yPos y offset position of the window on the screen, -1 for
+   * @param yPos the y offset position of the window on the screen, -1 for
    *             centered
-   * @param title
-   * @param high_quality
+   * @param title the title of the window
+   * @param high_quality whether to enable antialiasing or not
    */
   def this(width: Int, height: Int, xPos: Int, yPos: Int, title: String, high_quality: Boolean) = {
     this()
@@ -107,11 +96,11 @@ abstract class AcceleratedDisplay {
   }
 
   /**
-   * @param title
-   * @param width
-   * @param height
-   * @param xOffset The x offset of the window on the screen, -1 if centered
-   * @param yOffset The y offset of the window on the screen, -1 if centered
+   * @param title the title of the window
+   * @param width the width of the window (in pixels)
+   * @param height the height of the window (in pixels)
+   * @param xOffset the x offset of the window on the screen, -1 if centered
+   * @param yOffset the y offset of the window on the screen, -1 if centered
    */
   private def initFrame(title: String, width: Int, height: Int, xOffset: Int, yOffset: Int): Unit = { // Shall we try a different look for the window ?
     try UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel")
@@ -244,7 +233,7 @@ abstract class AcceleratedDisplay {
   /**
    * Call this method periodically to have a constant frame rate
    *
-   * @param FPS
+   * @param FPS the target frame rate
    */
   def syncGameLogic(FPS: Int): Unit = {
     gt.sync(FPS)
