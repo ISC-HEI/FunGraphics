@@ -8,7 +8,7 @@ The documentation is available [here](https://isc-hei.github.io/FunGraphics/hevs
 
 ## Origin
 
-This library has been developed for the [`PImp`](https://isc.hevs.ch/learn/courses/101-1) and [`inf1`](https://inf1.begincoding.net) courses given at the _School of engineering_ [HES-SO Valais//Wallis](https://www.hevs.ch).
+This library has been developed orginally by P.-A. Mudry for the [`PImp`](https://isc.hevs.ch/learn/courses/101-1) and [`inf1`](https://inf1.begincoding.net) courses given at the _School of engineering_ [HES-SO Valais//Wallis](https://www.hevs.ch).
 
 ## Compiling
 
