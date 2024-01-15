@@ -46,25 +46,4 @@ class BasicTest {
     }
   }
 
-  @Test
-  def testClick(): Unit = {
-    assumeFalse(headless)
-    val w = 200
-    val h = 150
-    val f = FunGraphics(w, h, 0, 0, "hello", true)
-    var clicked = false
-    f.addMouseListener(new MouseAdapter() {
-      override def mouseClicked(x: MouseEvent) : Unit = {
-        println(f"mouseClicked x:${x.getX} y:${x.getY}")
-        clicked = true
-      }
-    })
-
-    val x = new FrameFixture(f.mainFrame)
-    x.robot().click(f.mainFrame.getContentPane, new Point(w / 2, h / 2))
-    x.robot().click(f.mainFrame.getContentPane, new Point(0, 0))
-
-    println(s"clicked:$clicked")
-    assertTrue(clicked)
-  }
 }

@@ -6,3 +6,4 @@ bin/
 .project
 .settings/
 *.sc
+.DS_Store
