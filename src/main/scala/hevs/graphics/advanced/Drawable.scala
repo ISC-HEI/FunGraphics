@@ -7,5 +7,5 @@ package hevs.graphics.advanced
  * @author Pierre-André Mudry
  */
 trait Drawable {
-  def draw(g: ListGraphics): Unit
+	def draw(g: ListGraphics): Unit
 }

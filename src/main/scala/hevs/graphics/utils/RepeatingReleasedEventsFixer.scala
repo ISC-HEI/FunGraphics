@@ -31,7 +31,7 @@ object RepeatingReleasedEventsFixer {
 
   /**
    * Asserts that the current thread is the event dispatching thread
-   * @throws AssertionError the current thread is not the EDT
+   * @throws AssertionError the current thread is nst the EDT
    * @return `true` if the current thread is the EDT
    */
   private def assertEDT: Boolean = {
