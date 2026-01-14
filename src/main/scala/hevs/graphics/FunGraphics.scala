@@ -270,7 +270,7 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
 	}
 
 	override def drawFillRect(rect: Rectangle): Unit = {
-		g2d.drawRect(rect.getX.toInt, rect.y, rect.getWidth.toInt, rect.getHeight.toInt)
+		g2d.fillRect(rect.getX.toInt, rect.y, rect.getWidth.toInt, rect.getHeight.toInt)
 	}
 
 	override def drawCircle(posX: Int, posY: Int, f: Int): Unit = {
