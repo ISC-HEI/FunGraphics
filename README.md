@@ -1,3 +1,10 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ISC-HEI/isc-logos/main/white/ISC%20Logo%20inline%20white%20v3%20-%20large.webp">
+  <img align="right" src="https://raw.githubusercontent.com/ISC-HEI/isc-logos/main/black/ISC%20Logo%20inline%20black%20v3%20-%20large.webp" alt="ISC Logo" height="50"/>
+</picture>
+
+![License](https://img.shields.io/badge/license-GPL--3.0-brightgreen)
+
 # The FunGraphics library
 
 A library used for teaching computer science in the [ISC](https://www.hevs.ch/isc) degree programme, notably for the course _101.1 Imperative programming_.
