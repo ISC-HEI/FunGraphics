@@ -1,5 +1,7 @@
 package hevs.graphics
 
+import hevs.graphics.utils.DisplaySetup
+
 import java.awt.image.BufferedImage
 import java.awt.{Color, Graphics, Toolkit}
 import javax.imageio.ImageIO
@@ -10,6 +12,18 @@ import javax.swing.JFrame
  */
 @SerialVersionUID(6832022057915586803L)
 object ImageGraphics {
+	/**
+	 * Runs the display checks before the `JFrame` superclass constructor touches AWT
+	 *
+	 * @param title the window title, returned unchanged
+	 * @return `title`
+	 */
+	private def beforeWindow(title: String): String = {
+		DisplaySetup.prepare()
+		DisplaySetup.openingDisplay(Toolkit.getDefaultToolkit)
+		title
+	}
+
 	/**
 	 * Converts a color array to a black-or-white array
 	 *
@@ -76,7 +90,8 @@ object ImageGraphics {
  * @param yPositionOffset    the y offset
  */
 @SerialVersionUID(6832022057915586803L)
-class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val xPositionOffset: Int, val yPositionOffset: Int) extends JFrame {
+class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val xPositionOffset: Int, val yPositionOffset: Int)
+	extends JFrame(ImageGraphics.beforeWindow(windowTitle)) {
 	private var backgroundBitmap: BufferedImage = null
 	private var w = 0
 	private var h = 0
@@ -115,7 +130,7 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
 	/**
 	 * Sets a grayscale pixel, does not sets values for invalid pixels
 	 * outside the screen. Does not repaint the screen either because it
-	 * is slow. If required, please call [[java.awt.Component#repaint()]] if needed after
+	 * is slow. If required, please call `repaint()` if needed after
 	 * you have updated all the pixels you need.
 	 *
 	 * @param x         X position of the pixel
@@ -148,9 +163,9 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
 	}
 
 	/**
-	 * Sets an array of pixels of [[Color]] and displays them
+	 * Sets an array of pixels of `Color` and displays them
 	 *
-	 * @param pixels the 2D of [[Color]] pixels
+	 * @param pixels the 2D of `Color` pixels
 	 */
 	def setPixelsColor(pixels: Array[Array[Color]]): Unit = {
 		try {
@@ -199,9 +214,9 @@ class ImageGraphics(val backGroundFilePath: String, val windowTitle: String, val
 	}
 
 	/**
-	 * Gets the array of the pixels as [[Color]]s
+	 * Gets the array of the pixels as `Color`s
 	 *
-	 * @return the 2D array of [[Color]] pixels
+	 * @return the 2D array of `Color` pixels
 	 */
 	def getPixelsColor(): Array[Array[Color]] = {
 		val values = Array.ofDim[Color](w, h)

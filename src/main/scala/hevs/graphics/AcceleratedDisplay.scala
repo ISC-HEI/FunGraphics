@@ -1,13 +1,12 @@
 package hevs.graphics
 
-import hevs.graphics.utils.{GraphicTimer, GraphicsBitmap}
-import jdk.internal.org.jline.utils.Display
+import hevs.graphics.utils.{DisplaySetup, GraphicTimer, GraphicsBitmap}
 
 import java.awt._
 import java.awt.image.{BufferStrategy, BufferedImage}
 import java.io.File
 import javax.imageio.ImageIO
-import javax.swing.{JFrame, SwingUtilities, SwingWorker, UIManager}
+import javax.swing.{JFrame, JPanel, SwingUtilities, SwingWorker, UIManager}
 
 
 object AcceleratedDisplay {
@@ -56,6 +55,10 @@ abstract class AcceleratedDisplay {
 	protected var backg2d: Graphics2D = _
 	var frontBuffer: BufferedImage = _
 	protected var backBuffer: BufferedImage = _
+	/**
+	 * Set when the window is painted through Swing instead of a [[BufferStrategy]] (Wayland toolkit)
+	 */
+	private var renderPanel: JPanel = _
 	protected var TRANSPARENT = new Color(0, 0, 0, 0)
 	// Frame updates per second with rendering thread
 	protected var target_fps = 0
@@ -111,19 +114,22 @@ abstract class AcceleratedDisplay {
 	 * @param yOffset the y offset of the window on the screen, -1 if centered
 	 */
 	private def initFrame(title: String, width: Int, height: Int, xOffset: Int, yOffset: Int, highDPI: Boolean = true): Unit = {
+		// Must run before anything from AWT or Swing is touched (toolkit selection on Wayland)
+		DisplaySetup.prepare()
+
 		// Fixes strange HIDPI settings on Windows and Mac when using high DPI screens
 		System.setProperty("sun.java2d.uiScale.enabled", "true")
 		System.setProperty("sun.java2d.uiScale", "1.0")
 
-		// Shall we try a different look for the window ?
-		try UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel")
-
-		catch {
-			case e1: Exception =>
-
+		// First contact with the display: explain what is wrong if it cannot be opened
+		val device = DisplaySetup.openingDisplay {
+			// Shall we try a different look for the window ?
+			try UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel")
+			catch {
+				case _: Exception =>
+			}
+			GraphicsEnvironment.getLocalGraphicsEnvironment.getDefaultScreenDevice
 		}
-		val env = GraphicsEnvironment.getLocalGraphicsEnvironment
-		val device = env.getDefaultScreenDevice
 		val gc = device.getDefaultConfiguration
 		val tk = Toolkit.getDefaultToolkit
 
@@ -158,12 +164,17 @@ abstract class AcceleratedDisplay {
 			g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY)
 		}
 
+		// The Wayland toolkit of the JetBrains Runtime has no page flipping, so no BufferStrategy:
+		// the window is then painted through the regular Swing mechanism
+		val swingPainting = tk.getClass.getName.endsWith("WLToolkit")
+
 		SwingUtilities.invokeLater _ -> {
 			mainFrame = new JFrame(title, gc)
 			mainFrame.setResizable(false)
-			mainFrame.setIgnoreRepaint(true)
+			mainFrame.setIgnoreRepaint(!swingPainting)
 			mainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE)
-			mainFrame.getContentPane.setPreferredSize(new Dimension(width, height))
+			if (swingPainting) installRenderPanel(width, height)
+			else mainFrame.getContentPane.setPreferredSize(new Dimension(width, height))
 			mainFrame.setIconImage(ImageIO.read(classOf[ImageGraphics].getResource("/res/img/isc_icon.png")))
 			// mainFrame.setUndecorated(!hasDecoration);
 			mainFrame.pack()
@@ -183,11 +194,20 @@ abstract class AcceleratedDisplay {
 		// Move the window to the center of the screen
 		mainFrame.setLocation(x, y)
 		mainFrame.setVisible(true)
-		mainFrame.createBufferStrategy(AcceleratedDisplay.numBuffers)
 
-		while ( {
-			bufferStrategy == null
-		}) bufferStrategy = mainFrame.getBufferStrategy
+		if (!swingPainting) {
+			try {
+				mainFrame.createBufferStrategy(AcceleratedDisplay.numBuffers)
+				while (bufferStrategy == null) bufferStrategy = mainFrame.getBufferStrategy
+			} catch {
+				case e: RuntimeException =>
+					// Toolkit without buffer strategies, fall back to Swing painting
+					if (AcceleratedDisplay.VERBOSE) System.out.println("[AccDisplay] No buffer strategy available (" + e + "), painting through Swing")
+					mainFrame.setIgnoreRepaint(false)
+					installRenderPanel(width, height)
+					mainFrame.pack()
+			}
+		}
 
 		/**
 		 * Rendering thread
@@ -231,9 +251,42 @@ abstract class AcceleratedDisplay {
 	}
 
 	/**
+	 * Replaces the content pane by a panel that paints the two buffers in the Swing painting
+	 * cycle. Used when the toolkit offers no [[BufferStrategy]] (Wayland). Swing's own double
+	 * buffering avoids flickering.
+	 *
+	 * @param width  the width of the drawing area (in pixels)
+	 * @param height the height of the drawing area (in pixels)
+	 */
+	private def installRenderPanel(width: Int, height: Int): Unit = {
+		renderPanel = new JPanel {
+			setOpaque(true)
+			setBackground(Color.white)
+
+			override def paintComponent(g: Graphics): Unit = {
+				super.paintComponent(g)
+				g.drawImage(backBuffer, 0, 0, null)
+				frontBuffer synchronized g.drawImage(frontBuffer, 0, 0, null)
+				if (DISPLAY_FPS) {
+					g.setColor(Color.black)
+					g.drawString("FPS - " + current_fps, (backBuffer.getWidth * 0.05).toInt, backBuffer.getHeight)
+				}
+			}
+		}
+		renderPanel.setPreferredSize(new Dimension(width, height))
+		mainFrame.setContentPane(renderPanel)
+	}
+
+	/**
 	 * This rendering method is called by the rendering thread, always
 	 */
 	private def internalRender(): Unit = {
+		if (renderPanel != null) {
+			// Swing painting: ask for a repaint, the panel composes the buffers on the event thread
+			renderPanel.repaint()
+			return
+		}
+
 		var g: Graphics2D = null
 		try {
 			g = bufferStrategy.getDrawGraphics.asInstanceOf[Graphics2D]
@@ -250,7 +303,7 @@ abstract class AcceleratedDisplay {
 		} catch {
 			case e: Exception =>
 
-		} finally g.dispose()
+		} finally if (g != null) g.dispose()
 	}
 
 	/**

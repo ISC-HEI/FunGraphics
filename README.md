@@ -17,6 +17,18 @@ The documentation is available [here](https://isc-hei.github.io/FunGraphics/hevs
 
 This library has been developed orginally by P.-A. Mudry for the [`PImp`](https://isc.hevs.ch/learn/courses/101-1) and [`inf1`](https://inf1.begincoding.net) courses given at the _School of engineering_ [HES-SO Valais//Wallis](https://www.hevs.ch).
 
+## Troubleshooting on Linux (Wayland)
+
+If a program using the library fails with `java.awt.AWTError: Can't connect to X11 window server using ':0' as the value of the DISPLAY variable`, the Java X11 toolkit cannot reach a display. Recent versions of the library print a diagnosis with the probable cause on the standard error output. The usual cases are:
+
+* **IntelliJ IDEA installed as a Flatpak** (the default on Fedora): the IDE runs natively on Wayland but its sandbox only has `fallback-x11` access, so programs launched from it cannot open an X11 window. Give it X11 access once and restart the IDE:
+  ```
+  flatpak override --user --socket=x11 com.jetbrains.IntelliJ-IDEA-Community
+  ```
+  (use `com.jetbrains.IntelliJ-IDEA-Ultimate` for the Ultimate edition). Alternatively, select the JetBrains Runtime bundled with the IDE (`/app/jbr`) as the project SDK: when X11 is unavailable the library then switches to its Wayland toolkit automatically.
+* **Xwayland is not running**: install it (`xorg-x11-server-Xwayland` on Fedora, `xwayland` on Debian/Ubuntu) and log in again.
+* **Authorization refused** although the X server runs: check that `XAUTHORITY` is set, or run `xhost +si:localuser:$USER` from a terminal of your desktop session.
+
 ## Compiling
 
 For releasing a new version, once everything has been tested, locally run
