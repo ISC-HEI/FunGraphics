@@ -269,7 +269,7 @@ trait Graphics {
 	 * @param fontFamily
 	 * the font family
 	 * @param fontStyle
-	 * the font style ([[Font.PLAIN]], [[Font.BOLD]], [[Font.ITALIC]], ...)
+	 * the font style (`Font.PLAIN`, `Font.BOLD`, `Font.ITALIC`, ...)
 	 * @param fontSize
 	 * the font size
 	 * @param color
@@ -335,7 +335,7 @@ trait Graphics {
 	 * @param fontFamily
 	 * the font family
 	 * @param fontStyle
-	 * the font style ([[Font.PLAIN]], [[Font.BOLD]], [[Font.ITALIC]], ...)
+	 * the font style (`Font.PLAIN`, `Font.BOLD`, `Font.ITALIC`, ...)
 	 * @param fontSize
 	 * the font size
 	 * @param color

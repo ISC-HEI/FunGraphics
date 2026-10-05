@@ -38,9 +38,9 @@ class ListGraphics(override val width: Int, override val height: Int, override v
 	private val objectsToBeDrawn: util.List[Drawable] = Collections.synchronizedList(new CopyOnWriteArrayList[Drawable])
 
 	/**
-	 * Sets the [[MouseListener]] to the window to react on mouse events
+	 * Sets the `MouseListener` to the window to react on mouse events
 	 *
-	 * @param mouseListener The [[MouseListener]]
+	 * @param mouseListener The `MouseListener`
 	 */
 	def setMouseListener(mouseListener: MouseListener): Unit = {
 		this.mouseListener = mouseListener
@@ -59,7 +59,7 @@ class ListGraphics(override val width: Int, override val height: Int, override v
 	/**
 	 * Register a new keyboard listener to main window
 	 *
-	 * @param listener the [[KeyListener]]
+	 * @param listener the `KeyListener`
 	 */
 	def registerKeyListener(listener: KeyListener): Unit = {
 		mainFrame.addKeyListener(listener)
@@ -91,9 +91,9 @@ class ListGraphics(override val width: Int, override val height: Int, override v
 	}
 
 	/**
-	 * Gets the main [[JFrame]]
+	 * Gets the main `JFrame`
 	 *
-	 * @return the [[JFrame]] of the window
+	 * @return the `JFrame` of the window
 	 */
 	def getDisplayFrame: JFrame = this.mainFrame
 

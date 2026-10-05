@@ -176,9 +176,9 @@ class TurtleGraphics(width: Int, height: Int, windowName: String) extends FunGra
 	def getTurtleAngleRad(): Double = this.angle
 
 	/**
-	 * Adds a [[MouseMotionListener]] to the window to react on mouse movements
+	 * Adds a `MouseMotionListener` to the window to react on mouse movements
 	 *
-	 * @param mouseMotionListener the [[MouseMotionListener]]
+	 * @param mouseMotionListener the `MouseMotionListener`
 	 */
 	def setMouseMotionManager(mouseMotionListener: MouseMotionListener): Unit = {
 		this.mainFrame.addMouseMotionListener(mouseMotionListener)

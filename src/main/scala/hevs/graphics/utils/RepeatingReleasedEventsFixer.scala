@@ -15,16 +15,16 @@ import javax.swing.Timer
  */
 object RepeatingReleasedEventsFixer {
   /**
-   * Marker interface that denotes that the {@link KeyEvent} in question is reposted from some
-   * {@link AWTEventListener}, including this. It denotes that the event shall not be "hack processed" by this class
+   * Marker interface that denotes that the `KeyEvent` in question is reposted from some
+   * `AWTEventListener`, including this. It denotes that the event shall not be "hack processed" by this class
    * again. (The problem is that it is not possible to state "inject this event from this point in the pipeline" - one
-   * have to inject it to the event queue directly, thus it will come through this {@link AWTEventListener} too.
+   * have to inject it to the event queue directly, thus it will come through this `AWTEventListener` too.
    */
   trait Reposted { // marker
   }
 
   /**
-   * Dead simple extension of {@link KeyEvent} that implements {@link Reposted}.
+   * Dead simple extension of `KeyEvent` that implements [[Reposted]].
    */
   class RepostedKeyEvent(@SuppressWarnings(Array("hiding")) source: Component, @SuppressWarnings(Array("hiding")) id: Int, when: Long, modifiers: Int, keyCode: Int, keyChar: Char, keyLocation: Int) extends KeyEvent(source, id, when, modifiers, keyCode, keyChar, keyLocation) with RepeatingReleasedEventsFixer.Reposted {
   }

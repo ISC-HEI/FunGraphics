@@ -191,18 +191,18 @@ class FunGraphics(val width: Int, val height: Int, val xoffset: Int, val yoffset
 	}
 
 	/**
-	 * Adds a [[MouseListener]] to the window to react on mouse events
+	 * Adds a `MouseListener` to the window to react on mouse events
 	 *
-	 * @param l The [[MouseListener]]
+	 * @param l The `MouseListener`
 	 */
 	def addMouseListener(l: MouseListener): Unit = {
 		mainFrame.getContentPane.addMouseListener(l)
 	}
 
 	/**
-	 * Adds a [[MouseMotionListener]] to the window to react on mouse movements
+	 * Adds a `MouseMotionListener` to the window to react on mouse movements
 	 *
-	 * @param m The [[MouseMotionListener]]
+	 * @param m The `MouseMotionListener`
 	 */
 	def addMouseMotionListener(m: MouseMotionListener): Unit = {
 		mainFrame.getContentPane.addMouseMotionListener(m)

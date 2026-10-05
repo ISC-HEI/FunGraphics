@@ -27,8 +27,8 @@ object TextTools {
   /**
    * Get an integer value from the console.
    * Can read octal and hexadecimal formats as well (prefixed by `0`, respectively `0x`/`0X`)
-   * @return the typed [[Int]]
-   * @see [[Integer]]
+   * @return the typed `Int`
+   * @see `Integer`
    */
   def readInt(): Int = {
     System.out.print("Enter an integer value in decimal, octal or hexadecimal format : ")
@@ -46,7 +46,7 @@ object TextTools {
 
   /**
    * Get a double value from the console.
-   * @return they typed [[Double]]
+   * @return they typed `Double`
    * @see [[java.lang.Double]]
    */
   def readDouble(): Double = {
@@ -75,9 +75,9 @@ object TextTools {
   }
 
   /**
-   * Get a [[Char]] from the console.
-   * @return the typed [[Char]]
-   * @see [[Character]]
+   * Get a `Char` from the console.
+   * @return the typed `Char`
+   * @see `Character`
    */
   def readChar(): Char = {
     System.out.print("Enter a character : ")
@@ -104,7 +104,7 @@ object TextTools {
   }
 
   /**
-   * Converts all of the characters in this [[String]] to upper case.
+   * Converts all of the characters in this `String` to upper case.
    *
    * @param input the string to convert
    * @return the converted string
@@ -112,7 +112,7 @@ object TextTools {
   def toUpperCase(input: String): String = input.toUpperCase
 
   /**
-   * Converts all of the characters in this [[String]] to lower case.
+   * Converts all of the characters in this `String` to lower case.
    *
    * @param input the string to convert
    * @return the converted string
@@ -120,7 +120,7 @@ object TextTools {
   def toLowerCase(input: String): String = input.toLowerCase
 
   /**
-   * Converts the first character of this [[String]] to upper case.
+   * Converts the first character of this `String` to upper case.
    *
    * @param input the string to convert
    * @return the converted string
@@ -134,7 +134,7 @@ object TextTools {
   }
 
   /**
-   * Inverts a complete [[String]] (left to right)
+   * Inverts a complete `String` (left to right)
    *
    * @param input the string to invert
    * @return the inverted String
